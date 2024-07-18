@@ -1,5 +1,8 @@
 package com.example.rainforest_retail_server.models;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class DeliveryAddress {
 
     private String line;
@@ -12,6 +15,9 @@ public class DeliveryAddress {
         this.latitude = latitude;
         this.longitude = longitude;
         this.postcode = postcode;
+    }
+
+    public DeliveryAddress() {
     }
 
     public String getLine() {

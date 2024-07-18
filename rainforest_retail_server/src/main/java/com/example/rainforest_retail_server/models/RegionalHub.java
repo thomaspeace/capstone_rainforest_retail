@@ -16,11 +16,11 @@ public class RegionalHub {
     @Column(name ="region")
     private String region;
 
-    @OneToMany(mappedBy = "regional_hub")
+    @OneToMany(mappedBy = "regionalHub")
 //    JsonIgnoreProperties??? << unsure if needed right now
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "regional_hub")
+    @OneToMany(mappedBy = "regionalHub")
     private List<Van> vans;
 
     public RegionalHub(String region) {

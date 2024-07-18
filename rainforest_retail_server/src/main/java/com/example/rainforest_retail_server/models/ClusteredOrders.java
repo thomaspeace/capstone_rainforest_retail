@@ -18,7 +18,7 @@ public class ClusteredOrders {
     private List<Order> clusteredOrders;
 
     @ManyToOne
-    @JoinColumn(name = "regional_hub")
+    @JoinColumn(name = "regional_hub_id")
     private RegionalHub regionalHub;
 
     @OneToOne
