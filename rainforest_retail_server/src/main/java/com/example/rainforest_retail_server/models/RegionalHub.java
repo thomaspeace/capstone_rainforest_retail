@@ -1,5 +1,6 @@
 package com.example.rainforest_retail_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,10 +18,11 @@ public class RegionalHub {
     private String region;
 
     @OneToMany(mappedBy = "regionalHub")
-//    JsonIgnoreProperties??? << unsure if needed right now
+    @JsonIgnoreProperties({"regionalHub"})
     private List<Order> orders;
 
     @OneToMany(mappedBy = "regionalHub")
+    @JsonIgnoreProperties({"regionalHub"})
     private List<Van> vans;
 
     public RegionalHub(String region) {

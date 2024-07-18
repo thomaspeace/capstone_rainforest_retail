@@ -1,5 +1,6 @@
 package com.example.rainforest_retail_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,12 +23,13 @@ public class ClusteredOrder {
 
     @OneToOne
     @JoinColumn(name = "van_id")
-    private Van deliveryVan;
+    @JsonIgnoreProperties({"regionalHub"})
+    private Van van;
 
-    public ClusteredOrder(List<Order> listOfOrders, RegionalHub regionalHub, Van deliveryVan) {
+    public ClusteredOrder(List<Order> listOfOrders, RegionalHub regionalHub, Van van) {
         this.listOfOrders = listOfOrders;
         this.regionalHub = regionalHub;
-        this.deliveryVan = deliveryVan;
+        this.van = van;
     }
 
     public ClusteredOrder() {
@@ -57,11 +59,11 @@ public class ClusteredOrder {
         this.regionalHub = regionalHub;
     }
 
-    public Van getDeliveryVan() {
-        return deliveryVan;
+    public Van getVan() {
+        return van;
     }
 
-    public void setDeliveryVan(Van deliveryVan) {
-        this.deliveryVan = deliveryVan;
+    public void setVan(Van van) {
+        this.van = van;
     }
 }

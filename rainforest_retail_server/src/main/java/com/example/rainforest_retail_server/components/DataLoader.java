@@ -67,7 +67,5 @@ public class DataLoader implements ApplicationRunner {
 
         clusteredOrderService.createCluster();
 
-
-
     }
 }

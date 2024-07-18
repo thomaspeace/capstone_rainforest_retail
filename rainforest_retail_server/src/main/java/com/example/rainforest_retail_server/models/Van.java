@@ -1,5 +1,6 @@
 package com.example.rainforest_retail_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 
@@ -13,6 +14,7 @@ public class Van {
 
     @ManyToOne
     @JoinColumn(name = "regional_hub_id")
+    @JsonIgnoreProperties({"van"})
     private RegionalHub regionalHub;
 
     @OneToOne

@@ -29,6 +29,9 @@ public class ClusteredOrderService {
     @Autowired
     private VanRepository vanRepository;
 
+    public List<ClusteredOrder> findAllClusteredOrders() {
+        return clusteredOrderRepository.findAll();
+    }
 
     // we would need to change 1
     @Transactional
@@ -56,7 +59,4 @@ public class ClusteredOrderService {
             clusteredOrderRepository.save(clusteredOrder);
         }
     }
-
-
-
 }
