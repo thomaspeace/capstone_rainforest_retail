@@ -1,7 +1,7 @@
 package com.example.rainforest_retail_server.models;
 
+import com.example.rainforest_retail_server.models.enums.DeliveryStatus;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -26,13 +26,13 @@ public class Order {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private DeliveryStatus deliveryStatus;
 
-    private Order(LocalDate dateToDeliver, DeliveryAddress deliveryAddress, RegionalHub regionalHub, Status status){
+    private Order(LocalDate dateToDeliver, DeliveryAddress deliveryAddress, RegionalHub regionalHub){
         this.dateToDeliver = dateToDeliver;
         this.deliveryAddress = deliveryAddress;
         this.regionalHub = regionalHub;
-        this.status = status;
+        this.deliveryStatus = DeliveryStatus.NOT_DELIVERED;
     }
 
     public long getId() {
@@ -67,11 +67,11 @@ public class Order {
         this.regionalHub = regionalHub;
     }
 
-    public Status getStatus() {
-        return status;
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
     }
 }

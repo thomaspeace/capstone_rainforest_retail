@@ -1,4 +1,4 @@
-package com.example.rainforest_retail_server.models;
+package com.example.rainforest_retail_server.models.enums;
 
 public enum DeliveryStatus {
     NOT_DELIVERED,

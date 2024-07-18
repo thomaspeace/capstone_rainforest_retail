@@ -3,6 +3,7 @@ package com.example.rainforest_retail_server.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "regional_hubs")
@@ -28,9 +29,6 @@ public class RegionalHub {
         this.vans = new ArrayList<>();
     }
 
-    public RegionalHub(){
-
-    }
 
     public long getId() {
         return id;

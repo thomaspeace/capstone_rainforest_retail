@@ -1,4 +1,4 @@
-package com.example.rainforest_retail_server.Models;
+package com.example.rainforest_retail_server.models;
 
 import jakarta.persistence.*;
 
@@ -15,6 +15,9 @@ public class Van {
     @JoinColumn(name = "regional_hub_id")
     private RegionalHub regionalHub;
 
+    public Van(RegionalHub regionalHub) {
+        this.regionalHub = regionalHub;
+    }
 
     // Getters and setters
 
