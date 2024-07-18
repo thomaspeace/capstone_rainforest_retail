@@ -10,43 +10,48 @@ public class ClusteredOrders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     // One to Many relationship with Order
     @OneToMany
     @JoinColumn(name = "order_id")
-    private List<Orders> ClusteredOrders;
+    private List<Order> clusteredOrders;
 
     @ManyToOne
-    @JoinColumn(name = "regionalhub_id")
-    private RegtionalHub regionalHub;
+    @JoinColumn(name = "regional_hub")
+    private RegionalHub regionalHub;
 
     @OneToOne
     @JoinColumn(name = "van_id")
     private Van deliveryVan;
 
-    public ClusteredOrders(List<Orders> clusteredOrders, RegtionalHub regionalHub, Van deliveryVan) {
-        ClusteredOrders = clusteredOrders;
+    public ClusteredOrders(List<Order> clusteredOrders, RegionalHub regionalHub, Van deliveryVan) {
+        this.clusteredOrders = clusteredOrders;
         this.regionalHub = regionalHub;
         this.deliveryVan = deliveryVan;
     }
 
-    public ClusteredOrders() {
+    public Long getId() {
+        return id;
     }
 
-    public List<Orders> getClusteredOrders() {
-        return ClusteredOrders;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setClusteredOrders(List<Orders> clusteredOrders) {
-        ClusteredOrders = clusteredOrders;
+    public List<Order> getClusteredOrders() {
+        return clusteredOrders;
     }
 
-    public RegtionalHub getRegionalHub() {
+    public void setClusteredOrders(List<Order> clusteredOrders) {
+        this.clusteredOrders = clusteredOrders;
+    }
+
+    public RegionalHub getRegionalHub() {
         return regionalHub;
     }
 
-    public void setRegionalHub(RegtionalHub regionalHub) {
+    public void setRegionalHub(RegionalHub regionalHub) {
         this.regionalHub = regionalHub;
     }
 
