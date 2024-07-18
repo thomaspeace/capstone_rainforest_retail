@@ -2,8 +2,6 @@ package com.example.rainforest_retail_server.services;
 
 import com.example.rainforest_retail_server.models.Van;
 import com.example.rainforest_retail_server.repositories.VanRepository;
-import com.rainforestretail.model.Van;
-import com.rainforestretail.repository.VanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
