@@ -15,6 +15,9 @@ public class Van {
     @JoinColumn(name = "regional_hub_id")
     private RegionalHub regionalHub;
 
+    @OneToOne
+    private ClusteredOrders clusteredOrders;
+
     public Van(RegionalHub regionalHub) {
         this.regionalHub = regionalHub;
     }
