@@ -13,11 +13,11 @@ public class ClusteredOrder {
     private Long id;
 
     // One to Many relationship with Order
-    @OneToMany(mappedBy = "clustered_order")
+    @OneToMany(mappedBy = "clusteredOrder")
     private List<Order> listOfOrders;
 
     @ManyToOne
-    @JoinColumn(name = "regional_hub")
+    @JoinColumn(name = "regional_hub_id")
     private RegionalHub regionalHub;
 
     @OneToOne

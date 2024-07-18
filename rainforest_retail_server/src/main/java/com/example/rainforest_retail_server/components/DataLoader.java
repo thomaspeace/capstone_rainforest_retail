@@ -23,8 +23,6 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     RegionalHubRepository regionalHubRepository;
 
-    @Autowired
-    ClusteredOrder clusteredOrder;
 
     public void run(ApplicationArguments args) throws Exception{
 
