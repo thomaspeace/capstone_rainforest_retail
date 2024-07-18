@@ -1,4 +1,4 @@
-package com.example.rainforest_retail_server.Models;
+package com.example.rainforest_retail_server.models;
 
 import jakarta.persistence.*;
 
