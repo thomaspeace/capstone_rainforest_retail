@@ -15,7 +15,7 @@ public class ClusteredOrders {
     // One to Many relationship with Order
     @OneToMany
     @JoinColumn(name = "order_id")
-    private List<Order> clusteredOrders;
+    private List<Order> listOfOrders;
 
     @ManyToOne
     @JoinColumn(name = "regional_hub")
@@ -25,8 +25,8 @@ public class ClusteredOrders {
     @JoinColumn(name = "van_id")
     private Van deliveryVan;
 
-    public ClusteredOrders(List<Order> clusteredOrders, RegionalHub regionalHub, Van deliveryVan) {
-        this.clusteredOrders = clusteredOrders;
+    public ClusteredOrders(List<Order> listOfOrders, RegionalHub regionalHub, Van deliveryVan) {
+        this.listOfOrders = listOfOrders;
         this.regionalHub = regionalHub;
         this.deliveryVan = deliveryVan;
     }
@@ -39,12 +39,12 @@ public class ClusteredOrders {
         this.id = id;
     }
 
-    public List<Order> getClusteredOrders() {
-        return clusteredOrders;
+    public List<Order> getListOfOrders() {
+        return listOfOrders;
     }
 
-    public void setClusteredOrders(List<Order> clusteredOrders) {
-        this.clusteredOrders = clusteredOrders;
+    public void setListOfOrders(List<Order> listOfOrders) {
+        this.listOfOrders = listOfOrders;
     }
 
     public RegionalHub getRegionalHub() {

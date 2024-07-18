@@ -28,7 +28,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
 
-    private Order(LocalDate dateToDeliver, DeliveryAddress deliveryAddress, RegionalHub regionalHub){
+    public Order(LocalDate dateToDeliver, DeliveryAddress deliveryAddress, RegionalHub regionalHub){
         this.dateToDeliver = dateToDeliver;
         this.deliveryAddress = deliveryAddress;
         this.regionalHub = regionalHub;
