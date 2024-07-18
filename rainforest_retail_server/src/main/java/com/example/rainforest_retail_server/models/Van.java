@@ -16,7 +16,7 @@ public class Van {
     private RegionalHub regionalHub;
 
     @OneToOne
-    private ClusteredOrders clusteredOrders;
+    private ClusteredOrder clusteredOrder;
 
     public Van(RegionalHub regionalHub) {
         this.regionalHub = regionalHub;
@@ -38,5 +38,13 @@ public class Van {
 
     public void setRegionalHub(RegionalHub regionalHub) {
         this.regionalHub = regionalHub;
+    }
+
+    public ClusteredOrder getClusteredOrder() {
+        return clusteredOrder;
+    }
+
+    public void setClusteredOrder(ClusteredOrder clusteredOrder) {
+        this.clusteredOrder = clusteredOrder;
     }
 }

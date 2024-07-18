@@ -5,16 +5,15 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "clustered_orders")
-public class ClusteredOrders {
+@Table(name = "clustered_order")
+public class ClusteredOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // One to Many relationship with Order
-    @OneToMany
-    @JoinColumn(name = "order_id")
+    @OneToMany(mappedBy = "clustered_order")
     private List<Order> listOfOrders;
 
     @ManyToOne
@@ -25,7 +24,7 @@ public class ClusteredOrders {
     @JoinColumn(name = "van_id")
     private Van deliveryVan;
 
-    public ClusteredOrders(List<Order> listOfOrders, RegionalHub regionalHub, Van deliveryVan) {
+    public ClusteredOrder(List<Order> listOfOrders, RegionalHub regionalHub, Van deliveryVan) {
         this.listOfOrders = listOfOrders;
         this.regionalHub = regionalHub;
         this.deliveryVan = deliveryVan;

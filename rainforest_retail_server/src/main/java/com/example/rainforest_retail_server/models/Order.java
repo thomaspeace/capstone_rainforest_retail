@@ -28,11 +28,16 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
 
+    @Column(name = "cluster")
+    @JoinColumn(name = "clustered_order_id")
+    private ClusteredOrder cluster;
+
     public Order(LocalDate dateToDeliver, DeliveryAddress deliveryAddress, RegionalHub regionalHub){
         this.dateToDeliver = dateToDeliver;
         this.deliveryAddress = deliveryAddress;
         this.regionalHub = regionalHub;
         this.deliveryStatus = DeliveryStatus.NOT_DELIVERED;
+        this.cluster = null;
     }
 
     public long getId() {
@@ -73,5 +78,13 @@ public class Order {
 
     public void setStatus(DeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+    }
+
+    public ClusteredOrder getCluster() {
+        return cluster;
+    }
+
+    public void setCluster(ClusteredOrder cluster) {
+        this.cluster = cluster;
     }
 }
