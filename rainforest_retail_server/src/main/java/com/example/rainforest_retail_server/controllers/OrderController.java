@@ -1,6 +1,7 @@
 package com.example.rainforest_retail_server.controllers;
 
 import com.example.rainforest_retail_server.models.Order;
+import com.example.rainforest_retail_server.models.OrderDTO;
 import com.example.rainforest_retail_server.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,9 +39,18 @@ public class OrderController {
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Optional<Order>> updateOrder(@PathVariable Long id, @RequestBody Order orderDetails) {
         Optional<Order> updatedOrder = Optional.ofNullable(orderService.updateOrder(id, orderDetails));
+        if (updatedOrder.isPresent()) {
+            return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Optional<Order>> updateOrderPartial(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
+        Optional<Order> updatedOrder = Optional.ofNullable(orderService.partialUpdateOrder(id, orderDTO));
         if (updatedOrder.isPresent()) {
             return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
         }
