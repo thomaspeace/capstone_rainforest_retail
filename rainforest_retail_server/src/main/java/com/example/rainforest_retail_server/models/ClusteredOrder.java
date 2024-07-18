@@ -30,6 +30,9 @@ public class ClusteredOrder {
         this.deliveryVan = deliveryVan;
     }
 
+    public ClusteredOrder() {
+    }
+
     public Long getId() {
         return id;
     }

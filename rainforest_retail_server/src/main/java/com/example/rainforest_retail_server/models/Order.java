@@ -40,6 +40,9 @@ public class Order {
         this.clusteredOrder = null;
     }
 
+    public Order() {
+    }
+
     public long getId() {
         return id;
     }

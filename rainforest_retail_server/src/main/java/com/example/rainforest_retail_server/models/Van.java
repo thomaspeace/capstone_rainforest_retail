@@ -22,6 +22,9 @@ public class Van {
         this.regionalHub = regionalHub;
     }
 
+    public Van() {
+    }
+
     // Getters and setters
 
     public Long getId() {

@@ -4,6 +4,7 @@ import com.example.rainforest_retail_server.models.*;
 import com.example.rainforest_retail_server.repositories.OrderRepository;
 import com.example.rainforest_retail_server.repositories.RegionalHubRepository;
 import com.example.rainforest_retail_server.repositories.VanRepository;
+import com.example.rainforest_retail_server.services.ClusteredOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,6 +23,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     RegionalHubRepository regionalHubRepository;
+
+    @Autowired
+    ClusteredOrderService clusteredOrderService;
 
 
     public void run(ApplicationArguments args) throws Exception{
@@ -60,6 +64,8 @@ public class DataLoader implements ApplicationRunner {
         orderRepository.save(order10);
         orderRepository.save(order11);
         orderRepository.save(order12);
+
+        clusteredOrderService.createCluster();
 
 
 
