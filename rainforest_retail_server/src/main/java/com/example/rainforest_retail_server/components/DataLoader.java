@@ -36,9 +36,11 @@ public class DataLoader implements ApplicationRunner {
         Van vanLondon1 = new Van(londonHub);
         Van vanLondon2 = new Van(londonHub);
         Van vanLondon3 = new Van(londonHub);
+        Van vanLondon4 = new Van(londonHub);
         vanRepository.save(vanLondon1);
         vanRepository.save(vanLondon2);
         vanRepository.save(vanLondon3);
+        vanRepository.save(vanLondon4);
 
         Order order1 = new Order(LocalDate.now(), new DeliveryAddress("86A Chesterton Rd", 51.51951728901795, -0.21472394218691596, "W10 6EP"), londonHub);
         Order order2 = new Order(LocalDate.now(), new DeliveryAddress("11-13 Penywern Rd", 51.490776221205515, -0.1929948386534358, "SW5 9TT"), londonHub);
@@ -65,7 +67,7 @@ public class DataLoader implements ApplicationRunner {
         orderRepository.save(order11);
         orderRepository.save(order12);
 
-        clusteredOrderService.createCluster();
+        clusteredOrderService.createCluster(londonHub.getId());
 
     }
 }

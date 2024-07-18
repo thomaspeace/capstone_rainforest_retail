@@ -15,15 +15,17 @@ public class ClusteredOrder {
 
     // One to Many relationship with Order
     @OneToMany(mappedBy = "clusteredOrder")
+    @JsonIgnoreProperties({"listOfOrders", "cluster"})
     private List<Order> listOfOrders;
 
     @ManyToOne
     @JoinColumn(name = "regional_hub_id")
+    @JsonIgnoreProperties({"orders", "vans"})
     private RegionalHub regionalHub;
 
     @OneToOne
     @JoinColumn(name = "van_id")
-    @JsonIgnoreProperties({"regionalHub"})
+    @JsonIgnoreProperties({"regionalHub", "clusteredOrder"})
     private Van van;
 
     public ClusteredOrder(List<Order> listOfOrders, RegionalHub regionalHub, Van van) {

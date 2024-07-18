@@ -35,8 +35,8 @@ public class ClusteredOrderService {
 
     // we would need to change 1
     @Transactional
-    public void createCluster(){
-        List<Order> listOfOrders = new ArrayList<>(orderRepository.findByRegionalHubIdEqualsAndDeliveryStatusEquals(1, DeliveryStatus.NOT_DELIVERED));
+    public void createCluster(long regionalHubId){
+        List<Order> listOfOrders = new ArrayList<>(orderRepository.findByRegionalHubIdEqualsAndDeliveryStatusEquals(regionalHubId, DeliveryStatus.NOT_DELIVERED));
 
         List<OrderWrapper> clusterInput = new ArrayList<>(listOfOrders.size());
         for (Order order : listOfOrders) {
@@ -55,8 +55,18 @@ public class ClusteredOrderService {
                 Order orderForCluster = orderWrapper.getOrder();
                 clusterOfOrders.add(orderForCluster);
             }
-            ClusteredOrder clusteredOrder = new ClusteredOrder(clusterOfOrders, null, vanForCluster);
+            ClusteredOrder clusteredOrder = new ClusteredOrder(clusterOfOrders, vanForCluster.getRegionalHub(), vanForCluster);
             clusteredOrderRepository.save(clusteredOrder);
+
+            // Update orders with new clustered order
+            for (Order order : clusterOfOrders) {
+                order.setCluster(clusteredOrder);
+                orderRepository.save(order);
+            }
+
+            // Update van with new clustered order
+            vanForCluster.setClusteredOrder(clusteredOrder);
+            vanRepository.save(vanForCluster);
         }
     }
 }
