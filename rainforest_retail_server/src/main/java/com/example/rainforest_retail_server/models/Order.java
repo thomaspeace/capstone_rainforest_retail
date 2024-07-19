@@ -31,6 +31,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "clustered_order_id")
+    @JsonIgnoreProperties({"listOfOrders"})
     private ClusteredOrder clusteredOrder;
 
     public Order(LocalDate dateToDeliver, AddressModel addressModel, RegionalHub regionalHub){

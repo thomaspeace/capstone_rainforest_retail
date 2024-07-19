@@ -48,7 +48,7 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}")  // localhost:8080/orders/1
     public ResponseEntity<Optional<Order>> updateOrderPartial(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
         Optional<Order> updatedOrder = Optional.ofNullable(orderService.partialUpdateOrder(id, orderDTO));
         if (updatedOrder.isPresent()) {
@@ -57,7 +57,7 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // localhost:8080/orders/1
     public ResponseEntity<Optional<Void>> deleteOrder(@PathVariable Long id) {
         Optional<Order> order = Optional.ofNullable(orderService.getOrderById(id));
         if (order.isPresent()) {
