@@ -77,6 +77,9 @@ public class OrderService {
                 ClusteredOrder clusteredOrder = clusteredOrderRepository.findById(orderDTO.getClusterId()).get();
                 order.setCluster(clusteredOrder);
             }
+
+            orderRepository.save(order);
+
             return order;
         }
 

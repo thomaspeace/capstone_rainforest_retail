@@ -14,10 +14,11 @@ public class Van {
 
     @ManyToOne
     @JoinColumn(name = "regional_hub_id")
-    @JsonIgnoreProperties({"van"})
+    @JsonIgnoreProperties({"vans","orders"})
     private RegionalHub regionalHub;
 
     @OneToOne
+    @JsonIgnoreProperties({"regionalHub"})
     private ClusteredOrder clusteredOrder;
 
     public Van(RegionalHub regionalHub) {

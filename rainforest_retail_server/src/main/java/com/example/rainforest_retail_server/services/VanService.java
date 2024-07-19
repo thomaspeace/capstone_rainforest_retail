@@ -26,6 +26,7 @@ public class VanService {
     }
 
     public Van updateVan(Long id, Van vanDetails) {
+
         Van van = vanRepository.findById(id).orElse(null);
         if (van != null) {
             // Update van details

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("clusters")
+@RequestMapping("/clusters")
 public class ClusteredOrderController {
 
     @Autowired

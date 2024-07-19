@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vans")
+@RequestMapping("/vans")
 public class VanController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class VanController {
         return new ResponseEntity<>(vans, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //  localhost:8080/vans/1
     public ResponseEntity<Van> getVanById(@PathVariable Long id) {
         Van van = vanService.getVanById(id);
         if (van != null) {
