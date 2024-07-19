@@ -23,7 +23,7 @@ public class RegionalHubController {
         return new ResponseEntity<>(regionalHubs, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // localhost:8080/regional-hubs/1
     public ResponseEntity<Optional<RegionalHub>> getRegionalHubById(@PathVariable Long id) {
         Optional<RegionalHub> regionalHub = Optional.ofNullable(regionalHubService.getRegionalHubById(id));
         if (regionalHub.isPresent()) {
@@ -32,13 +32,13 @@ public class RegionalHubController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
+    @PostMapping // localhost:8080/regional-hubs
     public ResponseEntity<RegionalHub> createRegionalHub(@RequestBody RegionalHub regionalHub) {
         RegionalHub savedRegionalHub = regionalHubService.createRegionalHub(regionalHub);
         return new ResponseEntity<>(savedRegionalHub, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}") // localhost:8080/regional-hubs/1
     public ResponseEntity<Optional<RegionalHub>> updateRegionalHub(@PathVariable Long id, @RequestBody RegionalHub regionalHubDetails) {
         Optional<RegionalHub> updatedRegionalHub = Optional.ofNullable(regionalHubService.updateRegionalHub(id, regionalHubDetails));
         if (updatedRegionalHub.isPresent()) {
@@ -47,7 +47,7 @@ public class RegionalHubController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // localhost:8080/regional-hubs/1
     public ResponseEntity<Optional<Void>> deleteRegionalHub(@PathVariable Long id) {
         Optional<RegionalHub> regionalHub = Optional.ofNullable(regionalHubService.getRegionalHubById(id));
         if (regionalHub.isPresent()) {

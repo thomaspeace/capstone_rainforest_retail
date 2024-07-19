@@ -32,8 +32,10 @@ public class OrderService {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public Order createOrder(Order order) {
-        return orderRepository.save(order);
+    public Order createOrder(OrderDTO orderDTO) {
+        RegionalHub foundRegionalHub = regionalHubRepository.findById(orderDTO.getRegionalHubId()).get();
+        Order newOrder = new Order(orderDTO.getDateToDeliver(), orderDTO.getDeliveryAddress(), foundRegionalHub);
+        return orderRepository.save(newOrder);
     }
 
     public Order updateOrder(Long id, Order orderDetails) {
@@ -54,17 +56,17 @@ public class OrderService {
             if(orderDTO.getDateToDeliver() != null) {
                 order.setDateToDeliver(orderDTO.getDateToDeliver());
             }
-            if(orderDTO.getAddressLine() != null) {
-                order.getDeliveryAddress().setLine(orderDTO.getAddressLine());
+            if(orderDTO.getDeliveryAddress().getLine() != null) {
+                order.getDeliveryAddress().setLine(orderDTO.getDeliveryAddress().getLine());
             }
-            if(orderDTO.getLatitude() != 0) {
-                order.getDeliveryAddress().setLatitude(orderDTO.getLatitude());
+            if(orderDTO.getDeliveryAddress().getLatitude() != 0) {
+                order.getDeliveryAddress().setLatitude(orderDTO.getDeliveryAddress().getLatitude());
             }
-            if(orderDTO.getLongitude() != 0) {
-                order.getDeliveryAddress().setLongitude(orderDTO.getLongitude());
+            if(orderDTO.getDeliveryAddress().getLongitude() != 0) {
+                order.getDeliveryAddress().setLongitude(orderDTO.getDeliveryAddress().getLongitude());
             }
-            if(orderDTO.getPostCode() != null) {
-                order.getDeliveryAddress().setPostcode(orderDTO.getPostCode());
+            if(orderDTO.getDeliveryAddress().getPostcode()!= null) {
+                order.getDeliveryAddress().setPostcode(orderDTO.getDeliveryAddress().getPostcode());
             }
             if(orderDTO.getRegionalHubId() != 0) {
                 RegionalHub regionalHub = regionalHubRepository.findById(orderDTO.getRegionalHubId()).get();

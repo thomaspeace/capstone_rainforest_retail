@@ -14,27 +14,15 @@ public class OrderDTO {
     /*
     * DELIVERY ADDRESS SECTION
     */
-    private String addressLine;
-    private double latitude;
-    private double longitude;
-    private String postCode;
+    private AddressModel deliveryAddress;
 
-    public OrderDTO(LocalDate dateToDeliver,
-                    long regionalHubId,
-                    DeliveryStatus deliveryStatus,
-                    long clusterId,
-                    String addressLine,
-                    double latitude,
-                    double longitude,
-                    String postCode) {
+    public OrderDTO(LocalDate dateToDeliver, long regionalHubId, DeliveryStatus deliveryStatus, long clusterId, AddressModel deliveryAddress) {
         this.dateToDeliver = dateToDeliver;
         this.regionalHubId = regionalHubId;
         this.deliveryStatus = deliveryStatus;
         this.clusterId = clusterId;
-        this.addressLine = addressLine;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.postCode = postCode;
+        this.deliveryAddress = deliveryAddress;
+
     }
 
     public OrderDTO() {
@@ -72,35 +60,11 @@ public class OrderDTO {
         this.clusterId = clusterId;
     }
 
-    public String getAddressLine() {
-        return addressLine;
+    public AddressModel getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setAddressLine(String addressLine) {
-        this.addressLine = addressLine;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getPostCode() {
-        return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setDeliveryAddress(AddressModel deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 }

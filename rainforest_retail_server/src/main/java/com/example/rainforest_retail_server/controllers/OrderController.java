@@ -18,13 +18,13 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping
+    @GetMapping // localhost:8080/orders
     public ResponseEntity<List<Order>> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // localhost:8080/orders
     public ResponseEntity<Optional<Order>> getOrderById(@PathVariable Long id) {
         Optional<Order> order = Optional.ofNullable(orderService.getOrderById(id));
         if (order.isPresent()) {
@@ -33,9 +33,9 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order savedOrder = orderService.createOrder(order);
+    @PostMapping // localhost:8080/orders
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
+        Order savedOrder = orderService.createOrder(orderDTO);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
 
