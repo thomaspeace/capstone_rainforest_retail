@@ -14,6 +14,9 @@ public class RegionalHub {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name="hub_address")
+    private AddressModel addressModel;
+
     @Column(name ="region")
     private String region;
 
@@ -25,10 +28,11 @@ public class RegionalHub {
     @JsonIgnoreProperties({"regionalHub"})
     private List<Van> vans;
 
-    public RegionalHub(String region) {
+    public RegionalHub(String region, AddressModel addressModel) {
         this.region = region;
         this.orders = new ArrayList<>();
         this.vans = new ArrayList<>();
+        this.addressModel = addressModel;
     }
 
     public RegionalHub() {
@@ -64,5 +68,13 @@ public class RegionalHub {
 
     public void setVans(List<Van> vans) {
         this.vans = vans;
+    }
+
+    public AddressModel getAddressModel() {
+        return addressModel;
+    }
+
+    public void setAddressModel(AddressModel addressModel) {
+        this.addressModel = addressModel;
     }
 }

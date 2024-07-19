@@ -18,7 +18,7 @@ public class Order {
     private LocalDate dateToDeliver;
 
     @Column(name = "delivery_address")
-    private DeliveryAddress deliveryAddress;
+    private AddressModel addressModel;
 
     @ManyToOne
     @JoinColumn(name = "regional_hub_id")
@@ -33,9 +33,9 @@ public class Order {
     @JoinColumn(name = "clustered_order_id")
     private ClusteredOrder clusteredOrder;
 
-    public Order(LocalDate dateToDeliver, DeliveryAddress deliveryAddress, RegionalHub regionalHub){
+    public Order(LocalDate dateToDeliver, AddressModel addressModel, RegionalHub regionalHub){
         this.dateToDeliver = dateToDeliver;
-        this.deliveryAddress = deliveryAddress;
+        this.addressModel = addressModel;
         this.regionalHub = regionalHub;
         this.deliveryStatus = DeliveryStatus.NOT_DELIVERED;
         this.clusteredOrder = null;
@@ -60,12 +60,12 @@ public class Order {
         this.dateToDeliver = dateToDeliver;
     }
 
-    public DeliveryAddress getDeliveryAddress() {
-        return deliveryAddress;
+    public AddressModel getDeliveryAddress() {
+        return addressModel;
     }
 
-    public void setDeliveryAddress(DeliveryAddress deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
+    public void setDeliveryAddress(AddressModel addressModel) {
+        this.addressModel = addressModel;
     }
 
     public RegionalHub getRegionalHub() {

@@ -3,21 +3,21 @@ package com.example.rainforest_retail_server.models;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class DeliveryAddress {
+public class AddressModel {
 
     private String line;
     private double latitude;
     private double longitude;
     private String postcode;
 
-    public DeliveryAddress(String line, double latitude, double longitude, String postcode) {
+    public AddressModel(String line, double latitude, double longitude, String postcode) {
         this.line = line;
         this.latitude = latitude;
         this.longitude = longitude;
         this.postcode = postcode;
     }
 
-    public DeliveryAddress() {
+    public AddressModel() {
     }
 
     public String getLine() {
