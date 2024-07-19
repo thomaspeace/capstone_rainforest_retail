@@ -17,7 +17,7 @@ public class RegionalHubController {
     @Autowired
     private RegionalHubService regionalHubService;
 
-    @GetMapping
+    @GetMapping // localhost:8080/regional-hubs
     public ResponseEntity<List<RegionalHub>> getAllRegionalHubs() {
         List<RegionalHub> regionalHubs = regionalHubService.getAllRegionalHubs();
         return new ResponseEntity<>(regionalHubs, HttpStatus.OK);

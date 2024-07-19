@@ -17,8 +17,8 @@ public class Van {
     @JsonIgnoreProperties({"vans","orders"})
     private RegionalHub regionalHub;
 
-    @OneToOne
-    @JsonIgnoreProperties({"regionalHub"})
+    @OneToOne(mappedBy= "van")
+    @JsonIgnoreProperties({"van"})
     private ClusteredOrder clusteredOrder;
 
     public Van(RegionalHub regionalHub) {
