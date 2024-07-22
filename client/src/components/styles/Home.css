@@ -1,13 +1,31 @@
 .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    margin-top: 10rem;
-    margin-bottom: 2.5rem;
+    max-width: 1000px; 
+    margin: 10rem auto 2.5rem auto;
+    padding: 0 15px; 
 }
 
-.left{
-    background-color: aqua;
-    height: 200px;
+.r-r-title{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 30px;
 }
+
+.custom-progress-bar .progress-bar {
+    background-color: var(--teal); /* Custom color for the progress bar */
+}
+
+/* Font color for card content */
+.card-class {
+    background-color: #ffffff; /* Set background color of the card if needed */
+    border: 1px solid #ddd; /* Optional: Set border color */
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to the card */
+    margin-bottom: 25px;
+}
+
+  
+.custom-progress-bar {
+background-color: var(--teal); 
+}
+  
+  
