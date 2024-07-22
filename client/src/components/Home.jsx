@@ -2,14 +2,19 @@ import { Row, Container, Col, Card } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import RegionCarousel from './RegionCarousel';
 import "./styles/Home.css";
+import React from 'react';
+import logo from '../assets/Logo.png';
+
 
 const Home = () => {
     return (
         <Container>
             <div className="home">
                 <Row>
-                    <Col xs={12}>
-                        <h1 className='r-r-title'>Rainforest Retail</h1>
+                    <Col className="col-12">
+                        <div className="logo-container">
+                          <img src={logo} alt="Rainforest Retail Logo" className="logo" />
+                        </div>
                     </Col>
                 </Row>
                 <div className='content'>
@@ -51,3 +56,4 @@ const Home = () => {
 };
 
 export default Home;
+
