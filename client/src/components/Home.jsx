@@ -1,6 +1,9 @@
 import { Row, Container, Col } from "react-bootstrap";
 import './styles/Home.css';
 import RegionCarousel from "./RegionCarousel";
+import React from 'react';
+import logo from '../assets/Logo.png';
+
 
 
 const Home = () => {
@@ -10,7 +13,9 @@ const Home = () => {
             <div className="home">
                 <Row>
                     <Col className="col-12">
-                        <h1>Rainforest Retail</h1>
+                        <div className="logo-container">
+                          <img src={logo} alt="Rainforest Retail Logo" className="logo" />
+                        </div>
                     </Col>
                 </Row>
                 <Row>
@@ -30,8 +35,5 @@ const Home = () => {
 
     )
 };
-
-
-
 
 export default Home;
