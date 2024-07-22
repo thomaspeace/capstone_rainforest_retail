@@ -1,46 +1,38 @@
 import { useRef , useEffect, useState } from "react";
 import TT_API from "../utils/TT_API";
+import './styles/Map.css'
 
 const Map = () => {
     const [map, setMap] = useState(null);
     const mapElement = useRef();
 
+    const londonHub = [-0.15391076496468353, 51.545344674848295]
+
+    const waypoints = [
+        {lng: -0.21472394218691596, lat: 51.51951728901795},
+        {lng: -0.1929948386534358, lat: 51.490776221205515},
+        {lng: -0.20492147365662977, lat: 51.530631065786665},
+    ]
+
     useEffect(() => {
-        const tt_map = TT_API.getMAP(mapElement);
+        const tt_map = TT_API.getMAP(mapElement, londonHub);
         setMap(tt_map);
-        planRoute(tt_map);
+        return () => {
+            if(tt_map) {
+                tt_map.remove();
+            }
+        }
     }, []);
 
-    const planRoute = async (mapInstance) => {
-        const waypoints = [
-            { lng: 4.899, lat: 52.372 }, // Amsterdam
-            { lng: 4.479, lat: 51.922 }, // Rotterdam
-            { lng: 5.121, lat: 52.090 }  // Utrecht
-        ];
-        const geo = await TT_API.getROUTE(waypoints);
-
-        if(geo) {
-            mapInstance.addLayer({
-                id: "route",
-                type: "line",
-                source: {
-                    type: "geojson",
-                    data: geo,
-                },
-                paint: {
-                    "line-color": "#00d7ff",
-                    "line-width": 8,
-                },
-            })
-        }
-
-        const bounds = TT_API.getBOUNDS();
-
-        map.fitBounds(bounds, {padding: 20})
+    const handleGetRoutes = () => {
+        TT_API.getROUTE(waypoints);
     }
 
     return (
-        <div ref={mapElement}></div>
+        <>
+            <button onClick={handleGetRoutes}>GET ROUTES</button>
+            <div ref={mapElement} id="map" className="map"></div>
+        </>
     )
 
 }
