@@ -54,6 +54,7 @@ public class DataLoader implements ApplicationRunner {
         Order order10 = new Order(LocalDate.now(), new AddressModel("211 Uxbridge Rd", 51.50638861496406, -0.24025752906933492, "W12 9DH"), londonHub);
         Order order11 = new Order(LocalDate.now(), new AddressModel("30 St Dionis Rd", 51.4736836244389, -0.20206717862493706, "SW6 4TT"), londonHub);
         Order order12 = new Order(LocalDate.now(), new AddressModel("59 Walnut Tree Walk", 51.49425333965464, -0.1125830448477041, "SE11 6DN"), londonHub);
+
         orderRepository.save(order1);
         orderRepository.save(order2);
         orderRepository.save(order3);
@@ -66,6 +67,7 @@ public class DataLoader implements ApplicationRunner {
         orderRepository.save(order10);
         orderRepository.save(order11);
         orderRepository.save(order12);
+
 
         clusteredOrderService.createCluster(londonHub.getId());
 
