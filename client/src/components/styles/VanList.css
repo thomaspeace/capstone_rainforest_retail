@@ -1,0 +1,50 @@
+/* note: we use margins in the class names. if we have a button, increase the margin to match the orderlist */
+
+.van-list {
+    max-width: 1200px; 
+    margin: auto auto 2.5rem auto;
+    padding: 0 15px;
+}
+
+.van-list-title {
+    font-size: 2.5rem !important;
+    margin: 30px 0px;
+    text-align: center;
+}
+
+.van-list-col {
+    margin-bottom: 1rem;
+}
+
+.van-list-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    border: 1px solid lightgray;
+}
+
+.van-list-card-title {
+    margin-bottom: 0.5rem;
+}
+
+.van-list-card-subtitle {
+    margin-bottom: 0.5rem;
+}
+
+.van-list-card-button-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: left;
+}
+
+.button {
+    background-color: var(--teal) !important;
+    border: none !important;
+    transition: background-color 0.2s ease !important; 
+}
+
+.button:hover {
+    background-color: var(--tealDarken) !important;
+}
