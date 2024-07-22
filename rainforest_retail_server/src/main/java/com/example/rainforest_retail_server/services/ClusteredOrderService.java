@@ -16,6 +16,7 @@ import org.apache.commons.math3.random.RandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ClusteredOrderService {
     @Transactional
     public void createCluster(long regionalHubId) {
         // Fetch orders that are not delivered for the given regional hub
-        List<Order> listOfOrders = new ArrayList<>(orderRepository.findByRegionalHubIdEqualsAndDeliveryStatusEquals(regionalHubId, DeliveryStatus.NOT_DELIVERED));
+        List<Order> listOfOrders = new ArrayList<>(orderRepository.findByRegionalHubIdEqualsAndDeliveryStatusEqualsAndDateToDeliverEquals(regionalHubId, DeliveryStatus.NOT_DELIVERED, LocalDate.now()));
 
         // Wrap orders for clustering
         List<OrderWrapper> clusterInput = new ArrayList<>(listOfOrders.size());

@@ -5,10 +5,11 @@ import com.example.rainforest_retail_server.models.enums.DeliveryStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface OrderRepository  extends JpaRepository<Order, Long> {
 
-    List<Order> findByRegionalHubIdEqualsAndDeliveryStatusEquals(long regionalHubId, DeliveryStatus deliveryStatus);
+    List<Order> findByRegionalHubIdEqualsAndDeliveryStatusEqualsAndDateToDeliverEquals(long regionalHubId, DeliveryStatus deliveryStatus, LocalDate currentDate);
 }
