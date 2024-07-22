@@ -1,24 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const OrderList = ({ orders }) => {
   const [sortField, setSortField] = useState('id');
   const [sortDirection, setSortDirection] = useState('asc');
+  const [sortedOrders, setSortedOrders] = useState([]);
+
+  // Use useEffect to update sortedOrders when orders, sortField, or sortDirection change
+  useEffect(() => {
+    // Create a new sorted array without mutating the original orders
+    const newSortedOrders = [...orders].sort((a, b) => {
+      // Handle potential missing data by using nullish coalescing operator
+      const aValue = a[sortField] ?? '';
+      const bValue = b[sortField] ?? '';
+
+      // Compare values based on their types
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return sortDirection === 'asc' 
+          ? aValue.localeCompare(bValue) 
+          : bValue.localeCompare(aValue);
+      } else {
+        return sortDirection === 'asc' 
+          ? (aValue < bValue ? -1 : aValue > bValue ? 1 : 0)
+          : (bValue < aValue ? -1 : bValue > aValue ? 1 : 0);
+      }
+    });
+
+    setSortedOrders(newSortedOrders);
+  }, [orders, sortField, sortDirection]);
 
   const handleSort = (field) => {
-    if (field === sortField) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortField(field);
-      setSortDirection('asc');
-    }
+    setSortDirection(field === sortField && sortDirection === 'asc' ? 'desc' : 'asc');
+    setSortField(field);
   };
 
-  const sortedOrders = [...orders].sort((a, b) => {
-    if (a[sortField] < b[sortField]) return sortDirection === 'asc' ? -1 : 1;
-    if (a[sortField] > b[sortField]) return sortDirection === 'asc' ? 1 : -1;
-    return 0;
-  });
+  // Helper function to format date strings
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
 
   return (
     <div className="order-list">
@@ -26,9 +47,24 @@ const OrderList = ({ orders }) => {
       <table>
         <thead>
           <tr>
-            <th onClick={() => handleSort('id')}>ID</th>
-            <th onClick={() => handleSort('dateToDeliver')}>Delivery Date</th>
-            <th onClick={() => handleSort('deliveryStatus')}>Status</th>
+            <th>
+              ID 
+              <button onClick={() => handleSort('id')}>
+                {sortField === 'id' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅'}
+              </button>
+            </th>
+            <th>
+              Delivery Date 
+              <button onClick={() => handleSort('dateToDeliver')}>
+                {sortField === 'dateToDeliver' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅'}
+              </button>
+            </th>
+            <th>
+              Status 
+              <button onClick={() => handleSort('deliveryStatus')}>
+                {sortField === 'deliveryStatus' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅'}
+              </button>
+            </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -36,8 +72,10 @@ const OrderList = ({ orders }) => {
           {sortedOrders.map((order) => (
             <tr key={order.id}>
               <td>{order.id}</td>
-              <td>{new Date(order.dateToDeliver).toLocaleDateString()}</td>
-              <td>{order.deliveryStatus}</td>
+              {/* Use formatDate helper function to display the date */}
+              <td>{formatDate(order.dateToDeliver)}</td>
+              {/* Display delivery status, fallback to 'N/A' if not available */}
+              <td>{order.deliveryStatus || 'N/A'}</td>
               <td>
                 <Link to={`/orders/${order.id}`}>View Details</Link>
               </td>
