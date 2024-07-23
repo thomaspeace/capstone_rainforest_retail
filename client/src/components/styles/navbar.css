@@ -34,3 +34,10 @@
     background-color: var(--tealDarken);
     color: var(--lightCyan);
 }
+
+.navbar-container {
+    max-width: 1100pxx;
+    margin: 0 auto; 
+    width: 100%; 
+    padding: 0 15px; 
+}
