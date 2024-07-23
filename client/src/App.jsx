@@ -27,11 +27,11 @@ function App() {
     setOrders(data);
   }
   
-  const fetchClusteredOrders = (regionalHubId) => {
+  const fetchClusteredOrders = (hubId) => {
     return fetch('http://localhost:8080/clusters', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: regionalHubId
+      body: JSON.stringify({ hubId })  
     }).then(response => {
       return response.json();
     }).then(clusteredOrderList => {
@@ -67,8 +67,8 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const handleGetCluster = () => {
-    return fetchClusteredOrders(1);
+  const handleGetCluster = (hubId) => {
+    return fetchClusteredOrders(hubId);
   }
 
   return (
@@ -89,7 +89,7 @@ function App() {
                 />
               }
             />
-            <Route exact path="/regionalhubs" element={<RegionalHub handleGetCluster = {handleGetCluster}/>}/>
+            <Route path="/regionalhubs/:id" element={<RegionalHub handleGetCluster={(hubId) => handleGetCluster(hubId)} />} />
           </Routes>
         </main>
       </div>

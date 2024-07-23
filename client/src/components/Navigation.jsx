@@ -30,9 +30,9 @@ const Navigation = () => {
               <Nav.Link>Orders</Nav.Link>
             </LinkContainer>
             <NavDropdown title="Regional Hubs" id="basic-nav-dropdown">
-              <LinkContainer to="/regionalhubs/london">
-                <NavDropdown.Item>London</NavDropdown.Item>
-              </LinkContainer>
+            <LinkContainer to="/regionalhubs/1">
+              <NavDropdown.Item>London</NavDropdown.Item>
+            </LinkContainer>
               {/* Add more regional hubs as needed */}
             </NavDropdown>
           </Nav>

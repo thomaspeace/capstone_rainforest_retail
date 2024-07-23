@@ -1,0 +1,53 @@
+.regional-hub {
+    background-color: var(--offWhite);
+}
+
+.regional-hub__title {
+    color: black;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.regional-hub__map-card,
+.regional-hub__details-card,
+.regional-hub__stats-card,
+.regional-hub__action-card {
+    background-color: var(--white);
+    border-color: var(--lightCyan);
+}
+
+.regional-hub__map-card .card-body,
+.regional-hub__details-card .card-body,
+.regional-hub__stats-card .card-body,
+.regional-hub__action-card .card-body {
+    color: var(--darkGrey);
+}
+
+.regional-hub__details-card .card-header,
+.regional-hub__stats-card .card-header {
+    background-color: var(--darkCyan);
+    color: var(--white);
+}
+
+.regional-hub__button {
+    background-color: var(--teal);
+    border-color: var(--teal);
+    color: var(--white);
+}
+
+.regional-hub__button:hover {
+    background-color: var(--tealDarken);
+    border-color: var(--tealDarken);
+}
+
+.regional-hub__button.btn-secondary {
+    background-color: var(--dimGrey);
+    border-color: var(--dimGrey);
+}
+
+.regional-hub__button.btn-secondary:hover {
+    background-color: var(--darkGrey);
+    border-color: var(--darkGrey);
+}
