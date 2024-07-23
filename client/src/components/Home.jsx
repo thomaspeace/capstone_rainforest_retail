@@ -3,15 +3,11 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import RegionCarousel from './RegionCarousel';
 import "./styles/Home.css";
 import React from 'react';
-import logo from '../assets/Logo.png';
 
 
 const Home = () => {
     return (
         <>
-        {/* <div className="logo-container">
-            <img src={logo} alt="Rainforest Retail Logo" className="logo" />
-        </div> */}
         <Container>
             <div className="home">
                 <div className='content'>
