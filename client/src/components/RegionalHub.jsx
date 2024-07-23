@@ -1,13 +1,13 @@
 import { Col, Container, Row } from "react-bootstrap"
 import Map from './Map'
 
-const RegionalHub = ({clusteredOrders}) => {
+const RegionalHub = ({handleGetCluster, clusteredOrders}) => {
     return (
         <>
             <Container>
                 <Row>
                     <Col>
-                        <Map clusteredOrders = {clusteredOrders}/>
+                        <Map handleGetCluster = {handleGetCluster}/>
                     </Col>
                 </Row>
             </Container>
