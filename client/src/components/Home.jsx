@@ -3,16 +3,24 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import RegionCarousel from './RegionCarousel';
 import "./styles/Home.css";
 import React from 'react';
-import bannerImage from '../assets/teal-04787B.png';
+import bannerImage from '../assets/rainforest.jpg';
+import "./styles/Banner.css";
 
 
 const Home = () => {
     return (
         <>
         <div className="banner-container">
-            <img src={bannerImage} alt="Banner-image" className="banner-image" />
+            <div className="text-for-banner">
+                <h1>Rainforest Retail</h1>
+                <h3>Streamline your route, maximise your delivery</h3>
+            </div>
         </div>
+
         <Container>
+            <div className="title">
+                <h1>Your Dashboard</h1>
+            </div>
             <div className="home">
                 <div className='content'>
                     <Row className='info-cards'>
