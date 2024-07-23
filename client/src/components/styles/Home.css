@@ -1,8 +1,14 @@
 .home {
-    max-width: 1000px; 
-    margin: 10rem auto 2.5rem auto;
+    max-width: 1200px; 
+    margin: auto auto 2.5rem auto;
     padding: 0 15px; 
 }
+
+.logo-container{
+    background-color: var(--teal);
+    height: 200px;
+}
+
 
 .r-r-title{
     text-align: center;
@@ -11,7 +17,7 @@
 }
 
 .custom-progress-bar .progress-bar {
-    background-color: var(--teal); /* Custom color for the progress bar */
+    background-color: var(--darkCyan); /* Custom color for the progress bar */
 }
 
 /* Font color for card content */

@@ -8,15 +8,12 @@ import logo from '../assets/Logo.png';
 
 const Home = () => {
     return (
+        <>
+        {/* <div className="logo-container">
+            <img src={logo} alt="Rainforest Retail Logo" className="logo" />
+        </div> */}
         <Container>
             <div className="home">
-                <Row>
-                    <Col className="col-12">
-                        <div className="logo-container">
-                          <img src={logo} alt="Rainforest Retail Logo" className="logo" />
-                        </div>
-                    </Col>
-                </Row>
                 <div className='content'>
                     <Row className='info-cards'>
                         <Col xs={12} md={4}>
@@ -52,6 +49,7 @@ const Home = () => {
                 </div>
             </div>
         </Container>
+        </>
     );
 };
 
