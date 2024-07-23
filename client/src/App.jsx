@@ -8,6 +8,7 @@ import './App.css'
 import VanList from './components/VanList'
 import OrderList from './components/OrderList'
 import OrderDetails from './components/OrderDetails'
+import RegionalHub from './components/RegionalHub'
 
 function App() {
   const [vans, setVans] = useState([]);
@@ -72,6 +73,7 @@ function App() {
                 />
               }
             />
+            <Route exact path="/regionalhubs" element={<RegionalHub/>}/>
           </Routes>
         </main>
       </div>
