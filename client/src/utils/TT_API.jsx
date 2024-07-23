@@ -15,7 +15,7 @@ export default {
             key: VITE_TOMTOM_API,
             container: mapElement.current,
             center: londonHub,
-            zoom: 15
+            zoom: 8
         });
 
         var hubMarker = new tt.Marker().setLngLat(londonHub).addTo(routeMap);

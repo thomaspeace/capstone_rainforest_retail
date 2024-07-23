@@ -3,26 +3,40 @@ import TT_API from "../utils/TT_API";
 import './styles/Map.css'
 
 /*
+    ----------------------TODAYS TASKS------------------------
 
-    Clusters fetched automatically
-    Then can generate routes for those clusters using a button
+    Clusters fetched automatically - COMPLETED
+    Then can generate routes for those clusters using a button - COMPLETED
 
     Hover on points to display info
     Box next to map to show orders to deliver in correct order
-
+    CLEAR ROUTE WHEN CLICKING THE BUTTON AGAIN
 
 */
 
-const Map = () => {
+const Map = ({handleGetCluster}) => {
     const [map, setMap] = useState(null);
-    const [waypoints, setWaypoints] = useState([
-        {lng: -0.21472394218691596, lat: 51.51951728901795},
-        {lng: -0.1929948386534358, lat: 51.490776221205515},
-        {lng: -0.20492147365662977, lat: 51.530631065786665},
-    ])
+    const [routes, setRoutes] = useState([]);
     const mapElement = useRef();
 
     const londonHub = [-0.15391076496468353, 51.545344674848295]
+
+    const convertClusteredOrdersToWaypoints = (clusteredOrders) => {
+        let clusteredOrderRoutes = [];
+        let clusteredOrderWaypoints = [];
+        clusteredOrders.map(clusteredOrder => {
+            clusteredOrder.listOfOrders.map(order => {
+                const obj = {
+                    lng: order.deliveryAddress.longitude,
+                    lat: order.deliveryAddress.latitude,
+                }
+                clusteredOrderWaypoints.push(obj);
+            })
+            clusteredOrderRoutes.push(clusteredOrderWaypoints)
+            clusteredOrderWaypoints = [];
+        })
+        return clusteredOrderRoutes;
+    }
 
     useEffect(() => {
         const tt_map = TT_API.getMAP(mapElement, londonHub);
@@ -34,19 +48,41 @@ const Map = () => {
         }
     }, []);
 
-    const handleGetRoutes = () => {
+    const getClusteredList = () => {
+        return handleGetCluster();
+    }
+
+    const handleOrderClusters = () => {
+
+        getClusteredList()
+            .then(clusteredOrderList => {
+                return convertClusteredOrdersToWaypoints(clusteredOrderList)
+            }).then(routes => {
+                setRoutes(routes);
+            })
+    }
+
+    const handleGetRoute = (index) => {
         const hubPoint = {
             lng: londonHub[0],
             lat: londonHub[1]
         }
-        const waypointsWithHub = [hubPoint, ...waypoints, hubPoint];
-        setWaypoints(waypointsWithHub);
-        TT_API.getROUTE(waypointsWithHub);
+
+        routes.map((route, i) => {
+            if(i === index) {
+                const waypointsWithHub = [hubPoint, ...route, hubPoint];
+                TT_API.getROUTE(waypointsWithHub);
+                return;
+            }
+        })
     }
 
     return (
         <>
-            <button onClick={handleGetRoutes}>GET ROUTES</button>
+            <button onClick={handleOrderClusters}>GET CLUSTERS</button>
+            {routes.length > 0 && routes.map((route, index) => (
+                <button key={index} onClick={() => handleGetRoute(index)}>CLUSTER {index}</button>
+            ))}
             <div ref={mapElement} id="map" className="map"></div>
         </>
     )

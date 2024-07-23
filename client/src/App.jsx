@@ -27,20 +27,22 @@ function App() {
     setOrders(data);
   }
   
-  const fetchClusteredOrders = async (regionalHubId) => {
-    const response = await fetch('http://localhost:8080/clusters', {
+  const fetchClusteredOrders = (regionalHubId) => {
+    return fetch('http://localhost:8080/clusters', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: regionalHubId
+    }).then(response => {
+      return response.json();
+    }).then(clusteredOrderList => {
+      setClusteredOrders(clusteredOrderList)
+      return clusteredOrderList;
     })
-    const clusteredOrderList = await response.json();
-    setClusteredOrders(clusteredOrderList);
   }
 
   const fetchData = async () => {
     try {
       await Promise.all([
-        fetchClusteredOrders(1),
         fetchVans(),
         fetchOrders()
       ]);
@@ -65,6 +67,10 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  const handleGetCluster = () => {
+    return fetchClusteredOrders(1);
+  }
+
   return (
     <Router>
       <div className='app d-flex flex-column min-vh-100'>
@@ -83,7 +89,7 @@ function App() {
                 />
               }
             />
-            <Route exact path="/regionalhubs" element={<RegionalHub clusteredOrders = {clusteredOrders}/>}/>
+            <Route exact path="/regionalhubs" element={<RegionalHub handleGetCluster = {handleGetCluster}/>}/>
           </Routes>
         </main>
       </div>
