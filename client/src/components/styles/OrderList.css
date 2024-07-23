@@ -1,0 +1,85 @@
+.order-list {
+    max-width: 1200px; 
+    margin: auto auto 2.5rem auto;
+    padding: 0 15px; 
+}
+
+.order-list-title{
+    font-size: 2.5rem !important;
+    margin: 30px 0px;
+    text-align: center;
+}
+
+.order-list-navbar {
+    margin-bottom: 1rem;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid lightgray;
+
+}
+
+.order-list-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-list-nav-item {
+    margin-right: 1rem;
+    padding: 10px;
+}
+
+.order-list-col {
+    margin-bottom: 1rem;
+}
+
+.order-list-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-list-card-title {
+    margin-bottom: 0.5rem;
+}
+
+.order-list-card-subtitle {
+    margin-bottom: 0.5rem;
+}
+
+.order-list-card-button-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: left;
+}
+
+.order-list-dropdown{
+    background-color: var(--teal) !important;
+    border: none !important;
+    padding: 3px 10px 3px 10px !important;
+    margin: 0px 5px 0px 5px !important;
+}
+
+.button {
+    background-color: var(--teal) !important;
+    border: none !important;
+    transition: background-color 0.2s ease !important; 
+}
+
+.button:hover {
+    background-color: var(--tealDarken) !important;
+}
+
+.order-list-navbar-button {
+    background-color: var(--teal) !important;
+    border: none !important;
+    transition: background-color 0.2s ease !important; 
+    color: white !important;
+    padding: 3px 10px 3px 10px !important;
+    margin: 0px 5px 0px 5px !important;
+}
+
+.order-list-navbar-button:hover {
+    background-color: var(--tealDarken) !important;
+}
