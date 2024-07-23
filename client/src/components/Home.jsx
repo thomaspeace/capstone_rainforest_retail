@@ -5,16 +5,17 @@ import "./styles/Home.css";
 import React from 'react';
 import bannerImage from '../assets/rainforest.jpg';
 import "./styles/Banner.css";
-import taglineImage from '../assets/Tagline.png';  
-
 
 
 const Home = () => {
     return (
         <>
-            <div className="banner-container">
-                <img src={taglineImage} alt="Rainforest Retail: Streamline Your Route, Maximize Your Delivery" className="tagline-image" />
+        <div className="banner-container">
+            <div className="text-for-banner">
+                <h1>Rainforest Retail</h1>
+                <h3>Streamline your route, maximise your delivery</h3>
             </div>
+        </div>
 
         <Container>
             <div className="title">
