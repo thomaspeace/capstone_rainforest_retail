@@ -68,8 +68,5 @@ public class DataLoader implements ApplicationRunner {
         orderRepository.save(order11);
         orderRepository.save(order12);
 
-
-        clusteredOrderService.createCluster(londonHub.getId());
-
     }
 }

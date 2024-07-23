@@ -14,6 +14,7 @@ function App() {
   const [vans, setVans] = useState([]);
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [clusteredOrders, setClusteredOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchVans = async () => {
@@ -27,12 +28,23 @@ function App() {
     const data = await response.json();
     setOrders(data);
   }
+  
+  const fetchClusteredOrders = async (regionalHubId) => {
+    const response = await fetch('http://localhost:8080/clusters', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: regionalHubId
+    })
+    const clusteredOrderList = await response.json();
+    setClusteredOrders(clusteredOrderList);
+  }
 
   const fetchData = async () => {
     try {
       await Promise.all([
         fetchVans(),
-        fetchOrders()
+        fetchOrders(),
+        fetchClusteredOrders(1)
       ]);
       setLoading(false);
     } catch (error) {
