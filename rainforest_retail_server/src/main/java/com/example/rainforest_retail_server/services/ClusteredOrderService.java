@@ -1,12 +1,10 @@
 package com.example.rainforest_retail_server.services;
 
-import com.example.rainforest_retail_server.models.ClusteredOrder;
-import com.example.rainforest_retail_server.models.Order;
-import com.example.rainforest_retail_server.models.OrderWrapper;
-import com.example.rainforest_retail_server.models.Van;
+import com.example.rainforest_retail_server.models.*;
 import com.example.rainforest_retail_server.models.enums.DeliveryStatus;
 import com.example.rainforest_retail_server.repositories.ClusteredOrderRepository;
 import com.example.rainforest_retail_server.repositories.OrderRepository;
+import com.example.rainforest_retail_server.repositories.RegionalHubRepository;
 import com.example.rainforest_retail_server.repositories.VanRepository;
 import jakarta.transaction.Transactional;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
@@ -31,6 +29,9 @@ public class ClusteredOrderService {
 
     @Autowired
     private VanRepository vanRepository;
+
+    @Autowired
+    private RegionalHubRepository regionalHubRepository;
 
     public List<ClusteredOrder> findAllClusteredOrders() {
         return clusteredOrderRepository.findAll();
@@ -89,5 +90,29 @@ public class ClusteredOrderService {
             vanForCluster.setClusteredOrder(clusteredOrder);
             vanRepository.save(vanForCluster);
         }
+    }
+
+    public void removeClusteredOrdersByRegionalHubId(long regionalHubId) {
+
+        List<ClusteredOrder> clusteredOrderList = new ArrayList<>(clusteredOrderRepository.findByRegionalHubIdEquals(regionalHubId));
+
+        for(ClusteredOrder clusteredOrder : clusteredOrderList) {
+            List<Order> orderList = clusteredOrder.getListOfOrders();
+            for(Order order : orderList) {
+                order.removeCluster();
+                orderRepository.save(order);
+            }
+            clusteredOrderRepository.deleteById(clusteredOrder.getId());
+        }
+    }
+
+    public List<ClusteredOrder> createAndReturnClusteredOrders(long regionalHubId) {
+
+        if(!regionalHubRepository.findById(regionalHubId).isPresent()){
+            return null;
+        }
+        removeClusteredOrdersByRegionalHubId(regionalHubId);
+        createCluster(regionalHubId);
+        return new ArrayList<>(clusteredOrderRepository.findByRegionalHubIdEquals(regionalHubId));
     }
 }
