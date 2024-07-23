@@ -87,7 +87,6 @@ function App() {
             />
             <Route exact path="/regionalhubs" element={<RegionalHub clusteredOrders = {clusteredOrders}/>}/>
           </Routes>
-          <button onClick={handleGetClusters}>GENERATE CLUSTERS</button>
         </main>
       </div>
     </Router>
