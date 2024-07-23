@@ -6,11 +6,12 @@ const VITE_TOMTOM_API = import.meta.env.VITE_TOMTOM_API;
 const VITE_TOMTOM_URL = import.meta.env.VITE_TOMTOM_API_URL;
 
 let geojson;
-let routeMap;''
+let routeMap;
+let routeLayerIds = [];
+let waypointArr = [];
 
 export default {
     getMAP: (mapElement, londonHub) => {
-
         routeMap = tt.map({
             key: VITE_TOMTOM_API,
             container: mapElement.current,
@@ -23,16 +24,34 @@ export default {
         return routeMap;
     },
     getROUTE: async (waypoints) => {
+
+        if (routeLayerIds.length > 0) {
+            routeLayerIds.forEach(id => {
+                if (routeMap.getLayer(id)) {
+                    routeMap.removeLayer(id);
+                }
+                if (routeMap.getSource(id)) {
+                    routeMap.removeSource(id);
+                }
+            });
+            routeLayerIds = [];
+        }
+
+        waypointArr.forEach(marker => {marker.remove()});
+        waypointArr = [];
+
         waypoints.forEach(location => {
-            new tt.Marker().setLngLat(location).addTo(routeMap)
+            let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
+            waypointArr.push(marker);
         })
 
         const createRoute = (points) => {
             ttServices.services.calculateRoute(points).then((response) => {
                 const features = response.toGeoJson().features
                 features.forEach((feature, index) => {
+                    const layerId = 'route' + index;
                     routeMap.addLayer({
-                        'id': 'route' + index,
+                        'id': layerId,
                         'type': "line",
                         'source': {
                             'type': 'geojson',
@@ -49,6 +68,7 @@ export default {
                             'line-join': 'round'
                         }
                     })
+                    routeLayerIds.push(layerId);
                 })
             })
         }

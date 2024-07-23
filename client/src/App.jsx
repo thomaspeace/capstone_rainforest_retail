@@ -8,6 +8,7 @@ import './App.css'
 import VanList from './components/VanList'
 import OrderList from './components/OrderList'
 import OrderDetails from './components/OrderDetails'
+import MapPage from './components/MapPage'
 
 function App() {
   const [vans, setVans] = useState([]);
@@ -72,6 +73,7 @@ function App() {
                 />
               }
             />
+            <Route path="/map" element={<MapPage />}/>
           </Routes>
         </main>
       </div>
