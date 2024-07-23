@@ -42,9 +42,9 @@ function App() {
   const fetchData = async () => {
     try {
       await Promise.all([
+        fetchClusteredOrders(1),
         fetchVans(),
-        fetchOrders(),
-        fetchClusteredOrders(1)
+        fetchOrders()
       ]);
       setLoading(false);
     } catch (error) {
@@ -85,8 +85,9 @@ function App() {
                 />
               }
             />
-            <Route exact path="/regionalhubs" element={<RegionalHub/>}/>
+            <Route exact path="/regionalhubs" element={<RegionalHub clusteredOrders = {clusteredOrders}/>}/>
           </Routes>
+          <button onClick={handleGetClusters}>GENERATE CLUSTERS</button>
         </main>
       </div>
     </Router>
