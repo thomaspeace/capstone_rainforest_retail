@@ -92,4 +92,8 @@ public class Order {
     public void setCluster(ClusteredOrder clusteredOrder) {
         this.clusteredOrder = clusteredOrder;
     }
+
+    public void removeCluster() {
+        this.clusteredOrder = null;
+    }
 }
