@@ -54,6 +54,13 @@
     justify-content: left;
 }
 
+.order-list-dropdown{
+    background-color: var(--teal) !important;
+    border: none !important;
+    padding: 3px 10px 3px 10px !important;
+    margin: 0px 5px 0px 5px !important;
+}
+
 .button {
     background-color: var(--teal) !important;
     border: none !important;

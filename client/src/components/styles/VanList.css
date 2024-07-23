@@ -33,6 +33,32 @@
     margin-bottom: 0.5rem;
 }
 
+.van-list-navbar {
+    margin-bottom: 1rem;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid lightgray;
+
+}
+
+.van-list-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.van-list-nav-item {
+    margin-right: 1rem;
+    padding: 10px;
+}
+
+.van-list-dropdown{
+    background-color: var(--teal) !important;
+    border: none !important;
+    padding: 3px 10px 3px 10px !important;
+    margin: 0px 5px 0px 5px !important;
+}
+
 .van-list-card-button-container {
     margin-top: auto;
     display: flex;
@@ -46,5 +72,18 @@
 }
 
 .button:hover {
+    background-color: var(--tealDarken) !important;
+}
+
+.van-list-navbar-button {
+    background-color: var(--teal) !important;
+    border: none !important;
+    transition: background-color 0.2s ease !important; 
+    color: white !important;
+    padding: 3px 10px 3px 10px !important;
+    margin: 0px 5px 0px 5px !important;
+}
+
+.van-list-navbar-button:hover {
     background-color: var(--tealDarken) !important;
 }
