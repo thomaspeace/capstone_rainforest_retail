@@ -7,6 +7,9 @@ import VanList from './components/VanList'
 import OrderList from './components/OrderList'
 import OrderDetails from './components/OrderDetails'
 import RegionalHub from './components/RegionalHub'
+import Footer from './components/Footer'
+
+
 
 function App() {
   const [vans, setVans] = useState([]);
@@ -31,7 +34,7 @@ function App() {
     return fetch('http://localhost:8080/clusters', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ hubId })  
+      body: hubId 
     }).then(response => {
       return response.json();
     }).then(clusteredOrderList => {
@@ -68,6 +71,7 @@ function App() {
   }
 
   const handleGetCluster = (hubId) => {
+    console.log(hubId)
     return fetchClusteredOrders(hubId);
   }
 
@@ -89,9 +93,13 @@ function App() {
                 />
               }
             />
-            <Route path="/regionalhubs/:id" element={<RegionalHub handleGetCluster={(hubId) => handleGetCluster(hubId)} />} />
+            <Route path="/regionalhubs/:id" element={<RegionalHub handleGetCluster={handleGetCluster} />} />
           </Routes>
         </main>
+        {/* <Routes>
+          <Route path="/about-us" component={<AboutUs />} />
+        </Routes> */}
+        <Footer />
       </div>
     </Router>
   )

@@ -35,7 +35,9 @@ const RegionalHub = ({ handleGetCluster }) => {
         return <div className="text-center mt-5">Loading...</div>;
     }
 
-
+    const getClusterHelper = (id) => {
+        return handleGetCluster(id)
+    }
 
     return (
         <Container className="mt-4 regional-hub">
@@ -45,8 +47,7 @@ const RegionalHub = ({ handleGetCluster }) => {
                 <Col>
                     <Card className="regional-hub__map-card">
                         <Card.Body>
-                            {/* Pass the hub id to the Map component */}
-                            <Map handleGetCluster={() => handleGetCluster(hub.id)} />
+                            <Map getClusterHelper={() => getClusterHelper(hub.id)} regionalHubLat = {hub.addressModel.latitude} regionalHubLng = {hub.addressModel.longitude}/>
                         </Card.Body>
                     </Card>
                 </Col>
