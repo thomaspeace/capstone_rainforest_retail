@@ -66,4 +66,22 @@ public class OrderController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @PatchMapping("/delivered/{id}")
+    public ResponseEntity<Optional<Order>> orderDelivered(@PathVariable Long id) {
+        Optional<Order> order = Optional.ofNullable(orderService.orderDelivered(id));
+        if (order.isPresent()) {
+            return new ResponseEntity<>(order, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("/not-delivered/{id}")
+    public ResponseEntity<Optional<Order>> orderNotDelivered(@PathVariable Long id) {
+        Optional<Order> order = Optional.ofNullable(orderService.orderNotDelivered(id));
+        if (order.isPresent()) {
+            return new ResponseEntity<>(order, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

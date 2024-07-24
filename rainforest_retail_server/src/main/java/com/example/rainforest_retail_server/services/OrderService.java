@@ -4,6 +4,7 @@ import com.example.rainforest_retail_server.models.ClusteredOrder;
 import com.example.rainforest_retail_server.models.Order;
 import com.example.rainforest_retail_server.models.OrderDTO;
 import com.example.rainforest_retail_server.models.RegionalHub;
+import com.example.rainforest_retail_server.models.enums.DeliveryStatus;
 import com.example.rainforest_retail_server.repositories.ClusteredOrderRepository;
 import com.example.rainforest_retail_server.repositories.OrderRepository;
 import com.example.rainforest_retail_server.repositories.RegionalHubRepository;
@@ -91,4 +92,25 @@ public class OrderService {
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
     }
+
+
+    public Order orderDelivered(Long id) {
+        Order order = orderRepository.findById(id).orElse(null);
+        if (order != null) {
+            order.setStatus(DeliveryStatus.DELIVERED);
+            return orderRepository.save(order);
+        }
+        return null;
+    }
+
+    public Order orderNotDelivered(Long id) {
+        Order order = orderRepository.findById(id).orElse(null);
+        if (order != null) {
+            order.setStatus(DeliveryStatus.NOT_DELIVERED);
+            order.setDateToDeliver(order.getDateToDeliver().plusDays(1));
+            return orderRepository.save(order);
+        }
+        return null;
+    }
 }
+
