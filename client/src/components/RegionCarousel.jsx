@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/RegionCarousel.css';
 import { Button, Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
+import Weather from './Weather'
 
 const RegionCarousel = () => {
   return (
@@ -22,12 +23,13 @@ const RegionCarousel = () => {
                 </Card>
             </Col>
             <Col xs={12} lg={6}>
-                <Card className='carousel-card-class'>
+                {/* <Card className='carousel-card-class'>
                     <Card.Body className='carousel-card-body'>
-                        <Card.Title className='carousel-card-title'>Completed Routes</Card.Title>
-                        <ProgressBar className="custom-progress-bar" animated now={80} label={`${80}%`}/>
+                        <Weather />
                     </Card.Body>
-                </Card>
+                </Card> */}
+            <Weather />
+
             </Col>
             <Col xs={12} lg={6}>
                 <Card className='carousel-card-class'>
