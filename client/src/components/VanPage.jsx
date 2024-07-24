@@ -23,10 +23,6 @@ const VanPage = ({ vans, setOrderToDelivered, setOrderToNotDelivered, orders }) 
     setLoading(false);
   }, [id, vans]);
 
-
-
-
-
   if (loading) {
     return <p>Loading...</p>;
   }

@@ -22,12 +22,14 @@
     border-radius: 6px;
     border: 1px solid lightgray;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .cluster-list-card-title {
     margin-bottom: 0.5rem;
 }
 
-.cluster-list-card-subtitle {
-    margin-bottom: 0.5rem;
+.cluster-button-container {
+    display: flex;
+    justify-content: space-evenly;
 }
