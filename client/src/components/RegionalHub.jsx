@@ -21,7 +21,6 @@ const RegionalHub = ({ handleGetCluster }) => {
                 }
                 const data = await response.json();
                 setHub(data);
-                setError(null);
             } catch (error) {
                 console.error("Error fetching regional hub:", error);
             } finally {
@@ -74,25 +73,6 @@ const RegionalHub = ({ handleGetCluster }) => {
                             <p>Delivered: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'DELIVERED').length : 0}</p>
                             <p>In Transit: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'OUT_FOR_DELIVERY').length : 0}</p>
                             <p>Pending: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'NOT_DELIVERED').length : 0}</p>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-            
-            <Row>
-                <Col>
-                    <Card className="regional-hub__action-card">
-                        <Card.Body className="text-center">
-                            <Button 
-                                variant="primary" 
-                                className="me-2 regional-hub__button" 
-                                onClick={() => handleGetCluster(hub.id)}
-                            >
-                                Get Clusters
-                            </Button>
-                            <Button variant="secondary" className="regional-hub__button">
-                                Optimize Routes
-                            </Button>
                         </Card.Body>
                     </Card>
                 </Col>

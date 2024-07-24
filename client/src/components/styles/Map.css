@@ -2,3 +2,32 @@
     height: 500px;
     width: 500px;
 }
+
+.button-cluster {
+    margin-bottom: 1rem;
+}
+
+.cluster-list-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cluster-list-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    border: 1px solid lightgray;
+    margin-bottom: 1rem;
+}
+
+.cluster-list-card-title {
+    margin-bottom: 0.5rem;
+}
+
+.cluster-list-card-subtitle {
+    margin-bottom: 0.5rem;
+}

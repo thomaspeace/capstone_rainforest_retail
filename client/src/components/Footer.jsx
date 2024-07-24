@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <p>
-            <i class="fa-regular fa-copyright"> </i> {new Date().getFullYear()} Rainforest Retail. All rights reserved.
+            <i className="fa-regular fa-copyright"> </i> {new Date().getFullYear()} Rainforest Retail. All rights reserved.
             </p>
             {/* <p>
             <Link to="/about-us" className="footer-link">About Us</Link>

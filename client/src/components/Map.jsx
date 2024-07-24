@@ -1,4 +1,5 @@
 import { useRef , useEffect, useState } from "react";
+import { Container, Col, Row, Card, Button } from 'react-bootstrap'
 import TT_API from "../utils/TT_API";
 import './styles/Map.css'
 
@@ -16,7 +17,7 @@ import './styles/Map.css'
 
 const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     const [map, setMap] = useState(null);
-    const [routes, setRoutes] = useState([]);
+    const [clusters, setClusters] = useState([]);
     const mapElement = useRef();
 
     const hubLocation = [regionalHubLng, regionalHubLat]
@@ -59,8 +60,8 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
         getClusteredList()
             .then(clusteredOrderList => {
                 return convertClusteredOrdersToWaypoints(clusteredOrderList)
-            }).then(routes => {
-                setRoutes(routes);
+            }).then(clusters => {
+                setClusters(clusters);
             })
     }
 
@@ -70,9 +71,9 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
             lat: hubLocation[1]
         }
 
-        routes.map((route, i) => {
+        clusters.map((cluster, i) => {
             if(i === index) {
-                const waypointsWithHub = [hubPoint, ...route, hubPoint];
+                const waypointsWithHub = [hubPoint, ...cluster, hubPoint];
                 TT_API.getROUTE(waypointsWithHub);
                 return;
             }
@@ -81,11 +82,24 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
 
     return (
         <>
-            <button onClick={handleOrderClusters}>GET CLUSTERS</button>
-            {routes.length > 0 && routes.map((route, index) => (
-                <button key={index} onClick={() => handleGetRoute(index)}>CLUSTER {index}</button>
-            ))}
-            <div ref={mapElement} id="map" className="map"></div>
+            <Container>
+                <Row>
+                    <Col className="cluster-list-col">
+                        <Button className="button button-cluster" onClick={handleOrderClusters}>GET CLUSTERS</Button>
+                        <div ref={mapElement} id="map" className="map"></div>
+                    </Col>
+                    <Col className="cluster-list-col">
+                        {clusters.length > 0 && clusters.map((order, index) => (
+                            <Card className="cluster-list-card" key={index} style={{ width: '18rem' }}>
+                                <Card.Body>
+                                    <Card.Title className="cluster-list-card-title">Order Cluster {index + 1}</Card.Title>
+                                    <Button className="button" key={index} onClick={() => handleGetRoute(index)}>Get Route</Button>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </Col>
+                </Row>
+            </Container>
         </>
     )
 

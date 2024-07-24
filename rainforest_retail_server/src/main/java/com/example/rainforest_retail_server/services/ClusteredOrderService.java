@@ -83,7 +83,7 @@ public class ClusteredOrderService {
             // Update orders with new clustered order
             for (Order order : clusterOfOrders) {
                 order.setCluster(clusteredOrder);
-                order.setStatus(DeliveryStatus.OUT_FOR_DELIVERY);
+//                order.setStatus(DeliveryStatus.OUT_FOR_DELIVERY);
                 orderRepository.save(order);
             }
 
