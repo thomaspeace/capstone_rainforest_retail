@@ -53,12 +53,12 @@ public class DataLoader implements ApplicationRunner {
         Order order1 = new Order(LocalDate.now(), new AddressModel("86A Chesterton Rd", 51.51951728901795, -0.21472394218691596, "W10 6EP"), londonHub);
         Order order2 = new Order(LocalDate.now(), new AddressModel("11-13 Penywern Rd", 51.490776221205515, -0.1929948386534358, "SW5 9TT"), londonHub);
         Order order3 = new Order(LocalDate.now(), new AddressModel("94-148 Bravington Rd", 51.530631065786665, -0.20492147365662977, "W9 3AP"), londonHub);
-        Order order4 = new Order(LocalDate.now(), new AddressModel("32-2 Howard Rd", 51.51951728901795, -0.21472394218691596, "NW2 6DS"), londonHub);
+        Order order4 = new Order(LocalDate.now(), new AddressModel("32-2 Howard Rd", 51.55579393619279, -0.21718769410280123, "NW2 6DS"), londonHub);
         Order order5 = new Order(LocalDate.now(), new AddressModel("39A Galley Ln", 51.65461791573096, -0.22351845050164476, "EN5 4AR"), londonHub);
         Order order6 = new Order(LocalDate.now(), new AddressModel("57A Herne Hill", 51.457286229910686, -0.09558709440302694, "SE24 9NE"), londonHub);
         Order order7 = new Order(LocalDate.now(), new AddressModel("21 Wilson Rd", 51.47169537344103, -0.08521040906683797, "SE5 8PB"), londonHub);
         Order order8 = new Order(LocalDate.now(), new AddressModel("29 Woodstock Terrace", 51.50942818230739, -0.015406915618189784, "E14 0AD"), londonHub);
-        Order order9 = new Order(LocalDate.now(), new AddressModel("19 Rutland Rd", 51.457286229910686, -0.09558709440302694, "IG1 1EN"), londonHub);
+        Order order9 = new Order(LocalDate.now(), new AddressModel("19 Rutland Rd", 51.55482027182422, 0.07382969765313292, "IG1 1EN"), londonHub);
         Order order10 = new Order(LocalDate.now(), new AddressModel("211 Uxbridge Rd", 51.50638861496406, -0.24025752906933492, "W12 9DH"), londonHub);
         Order order11 = new Order(LocalDate.now(), new AddressModel("30 St Dionis Rd", 51.4736836244389, -0.20206717862493706, "SW6 4TT"), londonHub);
         Order order12 = new Order(LocalDate.now(), new AddressModel("59 Walnut Tree Walk", 51.49425333965464, -0.1125830448477041, "SE11 6DN"), londonHub);

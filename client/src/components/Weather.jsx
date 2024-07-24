@@ -3,18 +3,16 @@ import axios from 'axios';
 import './styles/Weather.css';
 import { Card } from 'react-bootstrap';
 
-
-
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const apiKey = '40fef30053fea6f30c11838982ef7d32';
+  const VITE_OPENWEATHER_API = import.meta.env.VITE_OPENWEATHER_API;
   const city = 'LONDON';
 
   useEffect(() => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=40fef30053fea6f30c11838982ef7d32&units=metric`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=${VITE_OPENWEATHER_API}&units=metric`)
       .then(response => {
         setWeatherData(response.data);
         setLoading(false);
