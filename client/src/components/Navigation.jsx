@@ -1,3 +1,5 @@
+// Navigation.jsx
+
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -30,10 +32,13 @@ const Navigation = () => {
               <Nav.Link>Orders</Nav.Link>
             </LinkContainer>
             <NavDropdown title="Regional Hubs" id="basic-nav-dropdown">
-            <LinkContainer to="/regionalhubs/1">
-              <NavDropdown.Item>London</NavDropdown.Item>
-            </LinkContainer>
-              {/* Add more regional hubs as needed */}
+              <LinkContainer to="/regionalhubs/1">
+                <NavDropdown.Item>London</NavDropdown.Item>
+              </LinkContainer>
+              {/* Add Midlands hub */}
+              <LinkContainer to="/regionalhubs/2">
+                <NavDropdown.Item>Midlands</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
