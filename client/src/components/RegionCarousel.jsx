@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/RegionCarousel.css';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 
 const RegionCarousel = () => {
   return (
@@ -10,24 +10,43 @@ const RegionCarousel = () => {
       <Carousel.Item interval={4000} className="carousel-item">
         <div className="carousel-background">
           <Carousel.Caption>
-            <h3>London</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </div>
-      </Carousel.Item>
-      <Carousel.Item interval={4000} className="carousel-item">
-        <div className="carousel-background">
-          <Carousel.Caption>
-            <h3>South West</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </div>
-      </Carousel.Item>
-      <Carousel.Item interval={4000} className="carousel-item">
-        <div className="carousel-background">
-          <Carousel.Caption>
-            <h3>Midlands</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <Container>
+            <h3 className='region-title-carousel'>London</h3>
+          <Row className='info-cards'>
+            <Col xs={12} lg={6}>
+                <Card className='carousel-card-class'>
+                    <Card.Body className='carousel-card-body'>
+                        <Card.Title className='carousel-card-title'>Deliveries Completed Today</Card.Title>
+                        <ProgressBar className="custom-progress-bar" animated now={45} label={`${45}%`}/>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col xs={12} lg={6}>
+                <Card className='carousel-card-class'>
+                    <Card.Body className='carousel-card-body'>
+                        <Card.Title className='carousel-card-title'>Completed Routes</Card.Title>
+                        <ProgressBar className="custom-progress-bar" animated now={80} label={`${80}%`}/>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col xs={12} lg={6}>
+                <Card className='carousel-card-class'>
+                    <Card.Body className='carousel-card-body'>
+                        <Card.Title className='carousel-card-title'>Number of Vans in Fleet</Card.Title>
+                        <ProgressBar className="custom-progress-bar" animated now={45} label={`${45}%`}/>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col xs={12} lg={6}>
+                <Card className='carousel-card-class'>
+                    <Card.Body className='carousel-card-body'>
+                        <Card.Title className='carousel-card-title'>Completed Routes</Card.Title>
+                        <ProgressBar className="custom-progress-bar" animated now={80} label={`${80}%`}/>
+                    </Card.Body>
+                </Card>
+            </Col>
+          </Row>
+          </Container>
           </Carousel.Caption>
         </div>
       </Carousel.Item>

@@ -83,3 +83,14 @@
 .order-list-navbar-button:hover {
     background-color: var(--tealDarken) !important;
 }
+
+@media (max-width: 768px) {
+    #goes-down{
+        margin-top: 23px !important;
+    }
+    #goes-down-2{
+        margin-top: 46px !important;
+    }
+  }
+
+

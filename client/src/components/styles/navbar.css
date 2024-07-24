@@ -2,6 +2,8 @@
 
 .navbar {
     background-color: var(--teal);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+
 }
 
 .navbar-brand img {
@@ -33,4 +35,12 @@
 .dropdown-item:focus {
     background-color: var(--tealDarken);
     color: var(--lightCyan);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto; 
+    width: 100%; 
+    padding: 0 15px;
+ 
 }
