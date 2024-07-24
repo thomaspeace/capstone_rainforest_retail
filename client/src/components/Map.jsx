@@ -14,12 +14,12 @@ import './styles/Map.css'
 
 */
 
-const Map = ({handleGetCluster}) => {
+const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     const [map, setMap] = useState(null);
     const [routes, setRoutes] = useState([]);
     const mapElement = useRef();
 
-    const londonHub = [-0.15391076496468353, 51.545344674848295]
+    const londonHub = [regionalHubLng, regionalHubLat]
 
     const convertClusteredOrdersToWaypoints = (clusteredOrders) => {
         let clusteredOrderRoutes = [];
@@ -49,11 +49,10 @@ const Map = ({handleGetCluster}) => {
     }, []);
 
     const getClusteredList = () => {
-        return handleGetCluster();
+        return getClusterHelper();
     }
 
     const handleOrderClusters = () => {
-
         getClusteredList()
             .then(clusteredOrderList => {
                 return convertClusteredOrdersToWaypoints(clusteredOrderList)
