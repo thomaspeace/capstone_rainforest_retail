@@ -21,7 +21,8 @@ export default {
             container: mapElement.current,
             center: hub,
             bearing: 0,
-            zoom: 8
+            pitch: 60,
+            zoom: 10
         });
 
         let element = document.createElement("div")
@@ -53,6 +54,7 @@ export default {
 
         waypoints.forEach(location => {
             if(location.lng != hubLocation[0] && location.lat != hubLocation[1]){
+                console.log(location.postCode)
                 let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
                 let popup = new tt.Popup({offset: 50}).setHTML(location.orderName + "<br>PostCode: " + location.postCode + "<br>Address: " + location.addressLine)
                 marker.setPopup(popup)
@@ -73,7 +75,7 @@ export default {
                             'data': feature
                         },
                         'paint': {
-                            'line-color': 'blue',
+                            'line-color': '#04787B',
                             'line-opacity': 0.7,
                             'line-width': 10,
                             'line-dasharray': [1, 0, 1, 0]
