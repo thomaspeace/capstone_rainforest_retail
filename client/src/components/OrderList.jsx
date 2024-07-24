@@ -93,13 +93,13 @@ const OrderList = ({ orders }) => {
             </Navbar.Text>
             <Navbar.Text className="order-list-nav-item">
               <strong>Status</strong>
-              <Button variant="link" onClick={() => handleSort('deliveryStatus')} className='order-list-navbar-button'>
+              <Button variant="link" id="goes-down" onClick={() => handleSort('deliveryStatus')} className='order-list-navbar-button'>
                 {sortField === 'deliveryStatus' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅'}
               </Button>
             </Navbar.Text>
             <Navbar.Text className="order-list-nav-item">
               <Dropdown>
-                <Dropdown.Toggle className="order-list-dropdown">
+                <Dropdown.Toggle className="order-list-dropdown" id='goes-down-2'>
                   Filter by Region
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
