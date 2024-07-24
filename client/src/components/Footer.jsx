@@ -14,7 +14,6 @@ const Footer = () => {
             <Link to="/about-us" className="footer-link">About Us</Link>
             </p> */}
             <p>Contact Us</p>
-            <p>Terms and Conditions</p>
         </footer>
     );
 };

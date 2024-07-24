@@ -71,7 +71,7 @@ const RegionalHub = ({ handleGetCluster }) => {
                         <Card.Body>
                             <p>Total Orders: {hub.orders ? hub.orders.length : 0}</p>
                             <p>Delivered: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'DELIVERED').length : 0}</p>
-                            <p>In Transit: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'OUT_FOR_DELIVERY').length : 0}</p>
+                            {/* <p>In Transit: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'OUT_FOR_DELIVERY').length : 0}</p> */}
                             <p>Pending: {hub.orders ? hub.orders.filter(order => order.deliveryStatus === 'NOT_DELIVERED').length : 0}</p>
                         </Card.Body>
                     </Card>
