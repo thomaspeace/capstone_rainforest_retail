@@ -38,6 +38,7 @@ function App() {
       return response.json();
     }).then(clusteredOrderList => {
       setClusteredOrders(clusteredOrderList)
+      fetchData();
       return clusteredOrderList;
     })
   }
