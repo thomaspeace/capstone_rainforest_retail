@@ -47,3 +47,10 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   margin-bottom: 25px;
 }
+
+.custom-progress-bar{
+  margin-top: 10px;
+  border: 1px solid #04777b55;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+}

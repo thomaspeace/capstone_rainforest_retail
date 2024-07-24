@@ -1,20 +1,74 @@
-.weather-carousel-card {
+.weather-carousel-card-class.card {
     width: 300px;
-    padding: 20px;
+    padding: 10px;
+    padding-bottom: 0px;
     margin: 0 auto;
     background-image: url('../../assets/weather.jpg');
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 2000px #ffffffa9;
+    border-radius: 5px !important; 
     text-align: center;
-  }
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+
+}
   
-  .weather-box h1 {
+  .weather-carousel-card-title{
     font-size: 1.5em;
-    margin-bottom: 10px;
+    margin-bottom: 0px !important;
+    
   }
   
-  .weather-box p {
-    margin: 5px 0;
+  .weather-carousel-card-p {
+    margin: 0px;
     font-size: 1em;
+    padding: 0px;
   }
+
+  .weather-carousel-card-body.card-body{
+    padding: 0px;
+  }
+
   
+@media (max-width: 575.98px) {
+  .weather-carousel-card-class.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Full width of the parent container */
+    height: auto; /* Auto height for better adaptability */
+    margin-bottom: 25px;
+    padding: 10px; /* Optional padding for better aesthetics */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .weather-carousel-card-class.card {
+    width: 315px;
+    margin-bottom: 25px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .weather-carousel-card-class.card {
+    width: 444px;
+    margin-bottom: 25px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .weather-carousel-card-class.card {
+    width: 293px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .weather-carousel-card-class.card {
+      width: 355px;
+      height: 85px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .weather-carousel-card-class.card {
+    width: 385px;
+    height: 85px;
+  }
+}
