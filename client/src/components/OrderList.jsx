@@ -121,7 +121,7 @@ const OrderList = ({ orders }) => {
               <Card className="order-list-card">
                 <Card.Body>
                   <Card.Title className="order-list-card-title">Order ID: {order.id}</Card.Title>
-                  <Card.Subtitle className="order-list-card-subtitle text-muted mb-1">
+                  <Card.Subtitle className="order-list-card-subtitle text-muted mb-2">
                     Delivery Date: {formatDate(order.dateToDeliver)}
                   </Card.Subtitle>
                   <Card.Subtitle className="order-list-card-subtitle text-muted mb-2">

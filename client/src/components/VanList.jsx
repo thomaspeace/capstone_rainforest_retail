@@ -84,9 +84,12 @@ const VanList = ({ vans }) => {
                   <Card.Subtitle className="van-list-card-subtitle text-muted mb-2">
                     Regional Hub: {van.regionalHub.region}
                   </Card.Subtitle>
-                  <Card.Subtitle className="van-list-card-subtitle text-muted mb-1">
+                  <Card.Subtitle className="van-list-card-subtitle text-muted mb-2">
                     Cluster: {van.clusteredOrder ? van.clusteredOrder.id : 'Not Assigned'}
                   </Card.Subtitle>
+                  <div className="van-list-card-button-container">
+                    <Button className='button' onClick={() => handleViewDetails(order)}>Go to Van</Button>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
