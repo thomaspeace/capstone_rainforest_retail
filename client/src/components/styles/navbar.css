@@ -3,7 +3,13 @@
 .navbar {
     background-color: var(--teal);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    padding-left: 0; 
+    padding-right: 0; 
+}
 
+.navbar-brand {
+    padding-left: 0; 
+    margin-right: 0; 
 }
 
 .navbar-brand img {
@@ -38,9 +44,46 @@
 }
 
 .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto; 
+    max-width: 100%; 
+    margin: 0; 
     width: 100%; 
-    padding: 0 15px;
- 
+    padding: 0 15px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-toggler {
+    margin-left: auto;
+}
+
+@media (min-width: 992px) {
+    .navbar-container {
+        padding-left: 0; 
+    }
+    
+    .navbar-brand {
+        padding-left: 15px; 
+    }
+}
+
+/* Adjust styles for mobile view */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--teal);
+        padding: 1rem;
+        z-index: 1000;
+    }
+
+    .navbar-nav {
+        margin-left: 0; /* Reset margin for mobile view */
+    }
 }
