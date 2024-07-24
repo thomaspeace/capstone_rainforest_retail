@@ -5,6 +5,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Map from './Map';
 import './styles/RegionalHub.css';
 
+
 const RegionalHub = ({ handleGetCluster }) => {
     const [hub, setHub] = useState(null);
     const [loading, setLoading] = useState(true);

@@ -7,9 +7,8 @@ import VanList from './components/VanList'
 import OrderList from './components/OrderList'
 import OrderDetails from './components/OrderDetails'
 import RegionalHub from './components/RegionalHub'
+import VanPage from './components/VanPage'
 import Footer from './components/Footer'
-
-
 
 function App() {
   const [vans, setVans] = useState([]);
@@ -60,6 +59,10 @@ function App() {
     fetchData();
   }, []);
 
+  // useEffect (() => {
+  //   fetchData();
+  // }, [orders]);
+
   // New function to set the selected order
   const selectOrder = (id) => {
     const order = orders.find(o => o.id === parseInt(id));
@@ -75,6 +78,26 @@ function App() {
     return fetchClusteredOrders(hubId);
   }
 
+  const setOrderToDelivered = async (orderId) => {
+    const response = await fetch(`http://localhost:8080/orders/delivered/${orderId}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"}
+    })
+    const data = await response.json()
+    console.log(data)
+    fetchData();
+  }
+
+  const setOrderToNotDelivered = async (orderId) => {
+    const response = await fetch(`http://localhost:8080/orders/not-delivered/${orderId}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"}
+    })
+    const data = await response.json()
+    console.log(data)
+    fetchData();
+  }
+
   return (
     <Router>
       <div className='app d-flex flex-column min-vh-100'>
@@ -84,6 +107,7 @@ function App() {
             <Route exact path="/" element={<Home/>}/>
             <Route path="/vans" element={<VanList vans={vans} />}/>
             <Route path="/orders" element={<OrderList orders={orders} />}/>
+            <Route path="/vans/:id" element={<VanPage vans={vans} setOrderToDelivered={setOrderToDelivered} setOrderToNotDelivered={setOrderToNotDelivered} orders={orders}/>}/>
             <Route 
               path="/orders/:id" 
               element={

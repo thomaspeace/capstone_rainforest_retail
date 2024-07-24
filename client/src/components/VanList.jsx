@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Navbar, Nav, Button, Dropdown } from 'react-bootstrap';
 import './styles/VanList.css';
+import { Link } from 'react-router-dom';
 
 const VanList = ({ vans }) => {
   const [sortDirection, setSortDirection] = useState('asc');
@@ -84,9 +85,14 @@ const VanList = ({ vans }) => {
                   <Card.Subtitle className="van-list-card-subtitle text-muted mb-2">
                     Regional Hub: {van.regionalHub.region}
                   </Card.Subtitle>
-                  <Card.Subtitle className="van-list-card-subtitle text-muted mb-1">
+                  <Card.Subtitle className="van-list-card-subtitle text-muted mb-2">
                     Cluster: {van.clusteredOrder ? van.clusteredOrder.id : 'Not Assigned'}
                   </Card.Subtitle>
+                  <Link to={`/vans/${van.id}`} className="van-list-card-button-container">
+                    <Button className='button'>
+                      Go to Van
+                    </Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
