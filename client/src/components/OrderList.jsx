@@ -171,3 +171,46 @@ export default OrderList;
 
 
 
+
+
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+// import { Card, Button, Container, Row, Col, Navbar, Nav, Modal } from 'react-bootstrap';
+// import './styles/OrderList.css';  // Import the external stylesheet
+
+// const OrderList = ({ orders }) => {
+//   const [sortField, setSortField] = useState('id');
+//   const [sortDirection, setSortDirection] = useState('asc');
+//   const [sortedOrders, setSortedOrders] = useState([]);
+//   const [modalShow, setModalShow] = useState(false);
+//   const [selectedOrder, setSelectedOrder] = useState(null);
+
+
+//   useEffect(() => {
+//     const newSortedOrders = [...orders].sort((a, b) => {
+//       const aValue = a[sortField] ?? '';
+//       const bValue = b[sortField] ?? '';
+
+//       if (typeof aValue === 'string' && typeof bValue === 'string') {
+//         return sortDirection === 'asc'
+//           ? aValue.localeCompare(bValue)
+//           : bValue.localeCompare(aValue);
+//       } else {
+//         return sortDirection === 'asc'
+//           ? (aValue < bValue ? -1 : aValue > bValue ? 1 : 0)
+//           : (bValue < aValue ? -1 : bValue > aValue ? 1 : 0);
+//       }
+//     });
+
+//     setSortedOrders(newSortedOrders);
+//   }, [orders, sortField, sortDirection]);
+
+//   const handleSort = (field) => {
+//     setSortDirection(field === sortField && sortDirection === 'asc' ? 'desc' : 'asc');
+//     setSortField(field);
+//   };
+
+//   const formatDate = (dateString) => {
+//     if (!dateString) return 'N/A';
+//     const date = new Date(dateString);
+//     return date.toLocaleDateString();
