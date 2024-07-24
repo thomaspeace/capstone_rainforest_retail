@@ -2,12 +2,40 @@ import { Row, Container, Col, Card } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import RegionCarousel from './RegionCarousel';
 import "./styles/Home.css";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import bannerImage from '../assets/rainforest.jpg';
 import "./styles/Banner.css";
 
 
-const Home = () => {
+const Home = ({orders}) => {
+
+    const[totalCompletedDeliveries, setTotalCompletedDeliveries] = useState(0)
+    const[totalOrdersToday, setTotalOrdersToday] = useState(0)
+    const [loading, setLoading] = useState(true);
+
+    const countTotalCompletedDeliveries = () => {
+        let count = orders.filter((order) => order.dateToDeliver === new Date().toISOString().split('T')[0] && order.deliveryStatus === "DELIVERED").length;
+        console.log("completed orders today " + count);
+        setTotalCompletedDeliveries(count)
+    }
+
+    const countOrdersToday = () => {
+        let count = orders.filter((order) => order.dateToDeliver === new Date().toISOString().split('T')[0]).length;
+        console.log("orders today " + count);
+        setTotalOrdersToday(count)
+    }
+
+    useEffect( () => {
+        countTotalCompletedDeliveries();
+        countOrdersToday();
+        setLoading(false);
+    }, [])
+
+
+    if (loading) {
+        return <p>Loading...</p>;
+      }
+
     return (
         <>
         <div className="banner-container">
@@ -28,7 +56,7 @@ const Home = () => {
                             <Card className='card-class'>
                                 <Card.Body className='card-body'>
                                     <Card.Title className='card-title'>Deliveries Today</Card.Title>
-                                    <ProgressBar className="custom-progress-bar" animated now={45} label={`${45}%`}/>
+                                    <ProgressBar className="custom-progress-bar" animated now={(totalCompletedDeliveries / totalOrdersToday)*100} label={`${((totalCompletedDeliveries / totalOrdersToday)*100).toFixed(0)}%`}/>
                                 </Card.Body>
                             </Card>
                         </Col>
