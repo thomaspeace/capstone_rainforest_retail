@@ -7,6 +7,9 @@ import VanList from './components/VanList'
 import OrderList from './components/OrderList'
 import OrderDetails from './components/OrderDetails'
 import RegionalHub from './components/RegionalHub'
+import Footer from './components/Footer'
+
+
 
 function App() {
   const [vans, setVans] = useState([]);
@@ -93,6 +96,10 @@ function App() {
             <Route path="/regionalhubs/:id" element={<RegionalHub handleGetCluster={handleGetCluster} />} />
           </Routes>
         </main>
+        {/* <Routes>
+          <Route path="/about-us" component={<AboutUs />} />
+        </Routes> */}
+        <Footer />
       </div>
     </Router>
   )
