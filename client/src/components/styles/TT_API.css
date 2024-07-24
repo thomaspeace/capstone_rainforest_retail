@@ -1,0 +1,6 @@
+#hub-marker {
+    background-image: url("../../assets/hub-marker.svg");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+}

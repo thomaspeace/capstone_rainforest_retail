@@ -8,8 +8,8 @@ import './styles/Map.css'
     Clusters fetched automatically - COMPLETED
     Then can generate routes for those clusters using a button - COMPLETED
     CLEAR ROUTE WHEN CLICKING THE BUTTON AGAIN - DONE
-
-    Hover on points to display info
+    Hover on points to display info - DONE
+    
     Box next to map to show orders to deliver in correct order
 
 */
@@ -19,7 +19,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     const [routes, setRoutes] = useState([]);
     const mapElement = useRef();
 
-    const londonHub = [regionalHubLng, regionalHubLat]
+    const hubLocation = [regionalHubLng, regionalHubLat]
 
     const convertClusteredOrdersToWaypoints = (clusteredOrders) => {
         let clusteredOrderRoutes = [];
@@ -29,6 +29,9 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
                 const obj = {
                     lng: order.deliveryAddress.longitude,
                     lat: order.deliveryAddress.latitude,
+                    orderName: "Order " + order.id,
+                    postCode: order.deliveryAddress.postcode,
+                    addressLine: order.deliveryAddress.line
                 }
                 clusteredOrderWaypoints.push(obj);
             })
@@ -39,7 +42,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     }
 
     useEffect(() => {
-        const tt_map = TT_API.getMAP(mapElement, londonHub);
+        const tt_map = TT_API.getMAP(mapElement, hubLocation);
         setMap(tt_map);
         return () => {
             if(tt_map) {
@@ -63,8 +66,8 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
 
     const handleGetRoute = (index) => {
         const hubPoint = {
-            lng: londonHub[0],
-            lat: londonHub[1]
+            lng: hubLocation[0],
+            lat: hubLocation[1]
         }
 
         routes.map((route, i) => {

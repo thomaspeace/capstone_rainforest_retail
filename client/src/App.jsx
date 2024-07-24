@@ -74,7 +74,6 @@ function App() {
   }
 
   const handleGetCluster = (hubId) => {
-    console.log(hubId)
     return fetchClusteredOrders(hubId);
   }
 
