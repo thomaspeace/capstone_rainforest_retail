@@ -8,8 +8,8 @@ import './styles/Map.css'
     Clusters fetched automatically - COMPLETED
     Then can generate routes for those clusters using a button - COMPLETED
     CLEAR ROUTE WHEN CLICKING THE BUTTON AGAIN - DONE
-
-    Hover on points to display info
+    Hover on points to display info - DONE
+    
     Box next to map to show orders to deliver in correct order
 
 */
@@ -29,6 +29,9 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
                 const obj = {
                     lng: order.deliveryAddress.longitude,
                     lat: order.deliveryAddress.latitude,
+                    orderName: "Order " + order.id,
+                    postCode: order.deliveryAddress.postcode,
+                    addressLine: order.deliveryAddress.line
                 }
                 clusteredOrderWaypoints.push(obj);
             })

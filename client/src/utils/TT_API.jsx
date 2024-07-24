@@ -20,6 +20,7 @@ export default {
             key: VITE_TOMTOM_API,
             container: mapElement.current,
             center: hub,
+            bearing: 0,
             zoom: 8
         });
 
@@ -51,10 +52,10 @@ export default {
         waypointArr = []
 
         waypoints.forEach(location => {
-            console.log("LOCATION: ", location)
-            console.log("HUB: ", hubLocation)
             if(location.lng != hubLocation[0] && location.lat != hubLocation[1]){
                 let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
+                let popup = new tt.Popup({offset: 50}).setHTML(location.orderName + "<br>PostCode: " + location.postCode + "<br>Address: " + location.addressLine)
+                marker.setPopup(popup)
                 waypointArr.push(marker)
             }
         })
