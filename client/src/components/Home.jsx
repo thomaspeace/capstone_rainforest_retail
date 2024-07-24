@@ -1,15 +1,29 @@
+import React, { useState, useEffect } from 'react';
 import { Row, Container, Col, Card } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import RegionCarousel from './RegionCarousel';
+import TermsPrivacyPopup from './TermsPrivacyPopup';
 import "./styles/Home.css";
-import React from 'react';
 import bannerImage from '../assets/rainforest.jpg';
 import "./styles/Banner.css";
 
 
+
+
 const Home = () => {
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const termsAccepted = localStorage.getItem('termsAccepted');
+        if (!termsAccepted) {
+            setShowPopup(true);
+        }
+    }, []);
+
     return (
         <>
+        {showPopup && <TermsPrivacyPopup onAccept={() => setShowPopup(false)} />}
         <div className="banner-container">
             <div className="text-for-banner">
                 <h1>Rainforest Retail</h1>

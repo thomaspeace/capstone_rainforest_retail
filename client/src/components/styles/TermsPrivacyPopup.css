@@ -1,0 +1,31 @@
+.scrollable-content {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .terms-and-conditions,
+  .privacy-policy {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .terms-and-conditions h2,
+  .privacy-policy h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .terms-and-conditions ol,
+  .privacy-policy ol {
+    padding-left: 20px;
+  }
+  
+  .terms-and-conditions li,
+  .privacy-policy li {
+    margin-bottom: 15px;
+  }
