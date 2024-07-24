@@ -1,0 +1,20 @@
+.weather-carousel-card {
+    width: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    background-image: url('../../assets/weather.jpg');
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 2000px #ffffffa9;
+    text-align: center;
+  }
+  
+  .weather-box h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .weather-box p {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+  
