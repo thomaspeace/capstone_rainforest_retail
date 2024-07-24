@@ -1,26 +1,32 @@
 import * as tt from "@tomtom-international/web-sdk-maps";
 import * as ttServices from "@tomtom-international/web-sdk-services";
 import '@tomtom-international/web-sdk-maps/dist/maps.css'
+import '../components/styles/TT_API.css'
 
 const VITE_TOMTOM_API = import.meta.env.VITE_TOMTOM_API;
 const VITE_TOMTOM_URL = import.meta.env.VITE_TOMTOM_API_URL;
 
-let geojson;
+let hubLocation = null;
 let routeMap;
 let routeLayerIds = [];
 let waypointArr = [];
 
 export default {
-    getMAP: (mapElement, londonHub) => {
+    getMAP: (mapElement, hub) => {
+
+        hubLocation = hub;
 
         routeMap = tt.map({
             key: VITE_TOMTOM_API,
             container: mapElement.current,
-            center: londonHub,
+            center: hub,
             zoom: 8
         });
 
-        var hubMarker = new tt.Marker().setLngLat(londonHub).addTo(routeMap);
+        let element = document.createElement("div")
+        element.id = "hub-marker"
+
+        let hubMarker = new tt.Marker({element: element}).setLngLat(hub).addTo(routeMap)
 
         return routeMap;
     },
@@ -45,8 +51,12 @@ export default {
         waypointArr = []
 
         waypoints.forEach(location => {
-            let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
-            waypointArr.push(marker)
+            console.log("LOCATION: ", location)
+            console.log("HUB: ", hubLocation)
+            if(location.lng != hubLocation[0] && location.lat != hubLocation[1]){
+                let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
+                waypointArr.push(marker)
+            }
         })
 
         const createRoute = (points) => {

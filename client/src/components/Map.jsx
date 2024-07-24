@@ -19,7 +19,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     const [routes, setRoutes] = useState([]);
     const mapElement = useRef();
 
-    const londonHub = [regionalHubLng, regionalHubLat]
+    const hubLocation = [regionalHubLng, regionalHubLat]
 
     const convertClusteredOrdersToWaypoints = (clusteredOrders) => {
         let clusteredOrderRoutes = [];
@@ -39,7 +39,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     }
 
     useEffect(() => {
-        const tt_map = TT_API.getMAP(mapElement, londonHub);
+        const tt_map = TT_API.getMAP(mapElement, hubLocation);
         setMap(tt_map);
         return () => {
             if(tt_map) {
@@ -63,8 +63,8 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
 
     const handleGetRoute = (index) => {
         const hubPoint = {
-            lng: londonHub[0],
-            lat: londonHub[1]
+            lng: hubLocation[0],
+            lat: hubLocation[1]
         }
 
         routes.map((route, i) => {
