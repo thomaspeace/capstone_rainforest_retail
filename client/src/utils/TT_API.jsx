@@ -6,7 +6,9 @@ const VITE_TOMTOM_API = import.meta.env.VITE_TOMTOM_API;
 const VITE_TOMTOM_URL = import.meta.env.VITE_TOMTOM_API_URL;
 
 let geojson;
-let routeMap;''
+let routeMap;
+let routeLayerIds = [];
+let waypointArr = [];
 
 export default {
     getMAP: (mapElement, londonHub) => {
@@ -23,16 +25,37 @@ export default {
         return routeMap;
     },
     getROUTE: async (waypoints) => {
+
+        // clear the map of the current route displayed on it, if there is one
+        // firstly removes the layers that are overlayed on the map
+        // then removes data associated to the map
+        if(routeLayerIds.length > 0) {
+            routeLayerIds.forEach(id => {
+                if(routeMap.getLayer(id)) {
+                    routeMap.removeLayer(id)
+                }
+                if(routeMap.getSource(id)) {
+                    routeMap.removeSource(id)
+                }
+            })
+            routeLayerIds = []
+        }
+
+        waypointArr.forEach(marker => {marker.remove()})
+        waypointArr = []
+
         waypoints.forEach(location => {
-            new tt.Marker().setLngLat(location).addTo(routeMap)
+            let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
+            waypointArr.push(marker)
         })
 
         const createRoute = (points) => {
             ttServices.services.calculateRoute(points).then((response) => {
                 const features = response.toGeoJson().features
                 features.forEach((feature, index) => {
+                    const layerId = 'route' + index
                     routeMap.addLayer({
-                        'id': 'route' + index,
+                        'id': layerId,
                         'type': "line",
                         'source': {
                             'type': 'geojson',
@@ -49,10 +72,13 @@ export default {
                             'line-join': 'round'
                         }
                     })
+                    routeLayerIds.push(layerId)
                 })
             })
         }
 
+        // calls the waypoint optimisation service provided by tomtom
+        // and returns an array of routes in an optimised order
         const url = `${VITE_TOMTOM_URL}/routing/waypointoptimization/1/best?key=` + VITE_TOMTOM_API;
         const payload = {
             waypoints: waypoints.map((pointIndex) => {
@@ -64,7 +90,6 @@ export default {
                 }
             })
         }
-
         try {
             const response = await fetch(url, {
                 method: 'POST',
