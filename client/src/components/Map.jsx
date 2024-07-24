@@ -7,10 +7,10 @@ import './styles/Map.css'
 
     Clusters fetched automatically - COMPLETED
     Then can generate routes for those clusters using a button - COMPLETED
+    CLEAR ROUTE WHEN CLICKING THE BUTTON AGAIN - DONE
 
     Hover on points to display info
     Box next to map to show orders to deliver in correct order
-    CLEAR ROUTE WHEN CLICKING THE BUTTON AGAIN
 
 */
 
