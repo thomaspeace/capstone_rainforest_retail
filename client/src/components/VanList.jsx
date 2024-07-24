@@ -88,9 +88,11 @@ const VanList = ({ vans }) => {
                   <Card.Subtitle className="van-list-card-subtitle text-muted mb-2">
                     Cluster: {van.clusteredOrder ? van.clusteredOrder.id : 'Not Assigned'}
                   </Card.Subtitle>
+                  <Link to={`/vans/${van.id}`} className="van-list-card-button-container">
                     <Button className='button'>
-                      <Link to={`/vans/${van.id}`} className="van-list-card-button-container">Go to Van</Link>
+                      Go to Van
                     </Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>

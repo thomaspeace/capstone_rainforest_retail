@@ -58,6 +58,10 @@ function App() {
     fetchData();
   }, []);
 
+  // useEffect (() => {
+  //   fetchData();
+  // }, [orders]);
+
   // New function to set the selected order
   const selectOrder = (id) => {
     const order = orders.find(o => o.id === parseInt(id));
@@ -79,6 +83,7 @@ function App() {
     })
     const data = await response.json()
     console.log(data)
+    fetchData();
   }
 
   const setOrderToNotDelivered = async (orderId) => {
@@ -88,6 +93,7 @@ function App() {
     })
     const data = await response.json()
     console.log(data)
+    fetchData();
   }
 
   return (
@@ -99,7 +105,7 @@ function App() {
             <Route exact path="/" element={<Home/>}/>
             <Route path="/vans" element={<VanList vans={vans} />}/>
             <Route path="/orders" element={<OrderList orders={orders} />}/>
-            <Route path="/vans/:id" element={<VanPage vans={vans} setOrderToDelivered={setOrderToDelivered} setOrderToNotDelivered={setOrderToNotDelivered}/>}/>
+            <Route path="/vans/:id" element={<VanPage vans={vans} setOrderToDelivered={setOrderToDelivered} setOrderToNotDelivered={setOrderToNotDelivered} orders={orders}/>}/>
             <Route 
               path="/orders/:id" 
               element={
