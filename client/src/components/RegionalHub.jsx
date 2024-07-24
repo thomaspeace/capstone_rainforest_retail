@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-// import Map from './Map';
+import Map from './Map';
 import './styles/RegionalHub.css'; // You'll need to create this CSS file
 
 
@@ -31,6 +31,10 @@ const RegionalHub = ({ handleGetCluster }) => {
         return <div>Loading...</div>;
     }
 
+    const getClusterHelper = (id) => {
+        return handleGetCluster(id)
+    }
+
     return (
         <Container className="mt-4 regional-hub">
             <h1 className="mb-4 regional-hub__title text-center">{hub.region} Regional Hub</h1>
@@ -39,7 +43,7 @@ const RegionalHub = ({ handleGetCluster }) => {
                 <Col>
                     <Card className="regional-hub__map-card">
                         <Card.Body>
-                            {/* <Map handleGetCluster={() => handleGetCluster(hub.id)} /> */}
+                            <Map getClusterHelper={() => getClusterHelper(hub.id)} regionalHubLat = {hub.addressModel.latitude} regionalHubLng = {hub.addressModel.longitude}/>
                         </Card.Body>
                     </Card>
                 </Col>
