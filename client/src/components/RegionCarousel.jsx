@@ -33,7 +33,41 @@ const RegionCarousel = () => {
               </Row>
             </Col>
             <Col xs={12} lg={6}>
-              <Weather />
+              <Weather city={'London'}/>
+            </Col>
+          </Row>
+        </Container>
+      </Carousel.Caption>
+    </div>
+  </Carousel.Item>
+
+
+  <Carousel.Item interval={4000} className="carousel-item">
+    <div className="carousel-background">
+      <Carousel.Caption>
+        <Container>
+          <h3 className='region-title-carousel'>Midlands</h3>
+          <Row>
+            <Col className='info-cards' xs={12} lg={6}>
+              <Row>
+                <Card className='carousel-card-class'>
+                  <Card.Body className='carousel-card-body'>
+                    <Card.Title className='carousel-card-title'>Deliveries Completed Today</Card.Title>
+                    <ProgressBar className="custom-progress-bar" animated now={45} label={`${45}%`} />
+                  </Card.Body>
+                </Card>
+              </Row>
+              <Row>
+                <Card className='carousel-card-class'>
+                  <Card.Body className='carousel-card-body'>
+                    <Card.Title className='carousel-card-title'>Completed Routes</Card.Title>
+                    <ProgressBar className="custom-progress-bar" animated now={80} label={`${80}%`} />
+                  </Card.Body>
+                </Card>
+              </Row>
+            </Col>
+            <Col xs={12} lg={6}>
+              <Weather city={'Birmingham'}/>
             </Col>
           </Row>
         </Container>
