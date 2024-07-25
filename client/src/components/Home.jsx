@@ -10,8 +10,10 @@ import "./styles/Banner.css";
 const Home = ({orders, vans}) => {
 
     const[totalCompletedDeliveries, setTotalCompletedDeliveries] = useState(0)
+    const[totalCompletedNotDelivered, setTotalNotDelivered] = useState(0)
     const[totalOrdersToday, setTotalOrdersToday] = useState(0)
     const[totalCompletedClusters, setTotalCompletedClusters] = useState(0)
+    const[totalUncompletedClusters, setTotalUncompletedClusters] = useState(0)
     const[totalClustersToday, setTotalClustersToday] = useState(1)
     const [loading, setLoading] = useState(true);
 
@@ -19,6 +21,21 @@ const Home = ({orders, vans}) => {
         let count = orders.filter((order) => order.dateToDeliver === new Date().toISOString().split('T')[0] && order.deliveryStatus === "DELIVERED").length;
         console.log("completed orders total = " + count);
         setTotalCompletedDeliveries(count)
+    }
+
+    const countNotDelivered = () => {
+        let count = 0;
+        vans.map(van => {
+            if (van.clusteredOrder?.listOfOrders?.length > 0) {
+                    van.clusteredOrder.listOfOrders.map(order => {     
+                        if ((order.deliveryStatus !== "DELIVERED") && order.dateToDeliver !== new Date().toISOString().split('T')[0]) {
+                            count++;
+                        }
+            })
+        }
+        setTotalNotDelivered(count)  
+        })
+
     }
 
     const countOrdersToday = () => {
@@ -42,7 +59,7 @@ const Home = ({orders, vans}) => {
     }
 
     const countCompletedClusters = () => {
-        let count = 0;
+        let completedCount = 0;
         vans.map(van => {
             if (van.clusteredOrder?.listOfOrders?.length > 0) {
                     let completed = true;
@@ -52,20 +69,41 @@ const Home = ({orders, vans}) => {
                         }
             })
             if (completed === true) {
-                count++;
+                completedCount++;
             }
         }
-        console.log("completed clusters = " + count);
-        setTotalCompletedClusters(count)  
+        console.log("completed clusters = " + completedCount);
+        setTotalCompletedClusters(completedCount)  
         })
-
     }
+    const countUncompletedClusters = () => {
+        let uncompletedCount = 0;
+        vans.map(van => {
+            if (van.clusteredOrder?.listOfOrders?.length > 0) {
+                    let uncompleted = true;
+                    van.clusteredOrder.listOfOrders.map(order => {     
+                        if (order.dateToDeliver !== new Date().toISOString().split('T')[0]) {
+                            uncompleted = false;
+                        }
+            })
+            if (uncompleted === false) {
+                uncompletedCount++;
+            }
+        }
+        console.log("uncompleted clusters = " + uncompletedCount);
+        setTotalUncompletedClusters(uncompletedCount)  
+        })
+    }
+
+
 
     useEffect( () => {
         countTotalCompletedDeliveries();
         countOrdersToday();
         countClustersToday();
         countCompletedClusters();
+        countNotDelivered();
+        countUncompletedClusters();
         setLoading(false);
     }, [])
 
@@ -94,7 +132,10 @@ const Home = ({orders, vans}) => {
                             <Card className='card-class'>
                                 <Card.Body className='card-body'>
                                     <Card.Title className='card-title'>Successful Deliveries Today</Card.Title>
-                                    <ProgressBar className="custom-progress-bar" animated now={(totalCompletedDeliveries / totalOrdersToday)*100} label={`${((totalCompletedDeliveries / totalOrdersToday)*100).toFixed(0)}%`}/>
+                                    <ProgressBar className="custom-progress-bar">
+                                        <ProgressBar animated now={(totalCompletedDeliveries / totalOrdersToday)*100} label={`${((totalCompletedDeliveries / totalOrdersToday)*100).toFixed(0)}%`} key={1}/>
+                                        <ProgressBar variant='warning' animated now={(totalCompletedNotDelivered / totalOrdersToday)*100} label={`${((totalCompletedNotDelivered / totalOrdersToday)*100).toFixed(0)}%`} key={2}/>
+                                    </ProgressBar>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -102,18 +143,13 @@ const Home = ({orders, vans}) => {
                             <Card className='card-class'>
                                 <Card.Body className='card-body'>
                                     <Card.Title className='card-title'>Successful Order Clusters</Card.Title>
-                                    <ProgressBar className="custom-progress-bar" animated now={(totalCompletedClusters / totalClustersToday) * 100} label={`${((totalCompletedClusters / totalClustersToday) * 100).toFixed(0)}%`}/>
+                                    <ProgressBar className="custom-progress-bar">
+                                        <ProgressBar animated now={(totalCompletedClusters / totalClustersToday) * 100} label={`${((totalCompletedClusters / totalClustersToday) * 100).toFixed(0)}%`} key={1}/>
+                                        <ProgressBar variant='warning' animated now={(totalUncompletedClusters / totalClustersToday) * 100} label={`${((totalUncompletedClusters / totalClustersToday) * 100).toFixed(0)}%`} key={2}/>
+                                    </ProgressBar>   
                                 </Card.Body>
                             </Card>
                         </Col>
-                        {/* <Col xs={12} md={4}>
-                            <Card className='card-class'>
-                                <Card.Body className='card-body'>
-                                    <Card.Title className='card-title'>Something Else</Card.Title>
-                                    <ProgressBar className="custom-progress-bar" animated now={10} label={`${10}%`}/>
-                                </Card.Body>
-                            </Card>
-                        </Col> */}
                     </Row>
                     <Row>
                         <Col xs={12}>

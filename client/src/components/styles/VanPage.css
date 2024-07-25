@@ -1,0 +1,57 @@
+.van-page {
+    max-width: 1200px; 
+    margin: auto auto 2.5rem auto;
+    padding: 0 15px; 
+}
+
+.van-page-title{
+    font-size: 2.5rem !important;
+    margin: 30px 0px;
+    text-align: center;
+}
+
+
+.van-page-col {
+    margin-bottom: 1rem;
+}
+
+.van-page-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.van-page-card-title {
+    margin-bottom: 0.5rem;
+}
+
+
+.van-page-card-button-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: left;
+}
+
+
+.button {
+    background-color: var(--teal) !important;
+    border: none !important;
+    transition: background-color 0.2s ease !important; 
+}
+
+.button:hover {
+    background-color: var(--tealDarken) !important;
+}
+
+#two {
+    margin-bottom: 0px;
+}
+
+#one {
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 15px !important;
+}
+
+
