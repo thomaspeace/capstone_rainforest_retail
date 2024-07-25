@@ -31,7 +31,11 @@
 
   
 .custom-progress-bar {
-background-color: var(--teal); 
+    background-color: var(--teal);
+}
+
+.undelivered-bar{
+    background-color: black;
 }
 
 .title {

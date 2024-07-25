@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import './styles/VanPage.css'
 
 const VanPage = ({ vans, setOrderToDelivered, setOrderToNotDelivered, orders }) => {
   const { id } = useParams();
@@ -22,10 +23,6 @@ const VanPage = ({ vans, setOrderToDelivered, setOrderToNotDelivered, orders }) 
     }
     setLoading(false);
   }, [id, vans]);
-
-
-
-
 
   if (loading) {
     return <p>Loading...</p>;
@@ -50,28 +47,28 @@ const VanPage = ({ vans, setOrderToDelivered, setOrderToNotDelivered, orders }) 
   return (
     <Container>
       <div className="van-page">
-        <h2>Van Page</h2>
+        <h2 className="van-page-title">Van {van.id}</h2>
         <Row>
           {van.clusteredOrder.listOfOrders.map((order) => (
-            <Col key={order.id} xs={12} sm={6} md={4} className="order-list-col">
-              <Card className="order-list-card">
+            <Col key={order.id} xs={12} sm={6} md={4} className="van-page-col">
+              <Card className="van-page-card">
                 <Card.Body>
-                  <Card.Title className="order-list-card-title">Order ID: {order.id}</Card.Title>
-                  <Card.Subtitle className="order-list-card-subtitle text-muted mb-2">
+                  <Card.Title className="van-page-card-title">Order ID: {order.id}</Card.Title>
+                  <Card.Subtitle className="van-page-card-subtitle text-muted mb-2">
                     Status: {order.deliveryStatus || 'N/A'}
                   </Card.Subtitle>
-                  <Card.Body className="order-list-card-subtitle text-muted mb-2">
+                  <Card.Body className="van-page-card-subtitle text-muted">
                     {order && (
                       <>
-                        <p>Delivery Address:</p>
-                        <ul>
+                        <p id="two">Delivery Address:</p>
+                        <ul id="one">
                           <li>{order.deliveryAddress.line}</li>
                           <li>{order.deliveryAddress.postcode}</li>
                         </ul>
                       </>
                     )}
                   </Card.Body>
-                  <div className="order-list-card-button-container">
+                  <div className="van-page-card-button-container">
                     <Button
                       className="button"
                       onClick={() => handleOrderDelivered(order)}
@@ -80,7 +77,7 @@ const VanPage = ({ vans, setOrderToDelivered, setOrderToNotDelivered, orders }) 
                       Delivered
                     </Button>
                   </div>
-                  <div className="order-list-card-button-container">
+                  <div className="van-page-card-button-container">
                     <Button
                       className="button mt-2"
                       onClick={() => handleOrderNotDelivered(order)}

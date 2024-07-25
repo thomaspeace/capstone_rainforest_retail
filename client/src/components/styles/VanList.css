@@ -88,3 +88,14 @@
 .van-list-navbar-button:hover {
     background-color: var(--tealDarken) !important;
 }
+
+.button:disabled,
+.button[disabled] {
+  background-color: #cccccc !important; /* Light grey background */
+  color: #666666 !important;            /* Dark grey text */
+  border-color: #cccccc !important;     /* Light grey border */
+  cursor: not-allowed !important;       /* Shows a 'not-allowed' cursor */
+  opacity: 0.6 !important;              /* Make the button appear faded */
+  pointer-events: none !important;      /* Disable interaction */
+  text-decoration: none !important;     /* Remove underline (if any) */
+}

@@ -104,7 +104,7 @@ function App() {
         <Navigation />
         <main className='flex-shrink-0'>
           <Routes>
-            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/" element={<Home orders={orders} vans={vans}/>}/>
             <Route path="/vans" element={<VanList vans={vans} />}/>
             <Route path="/orders" element={<OrderList orders={orders} />}/>
             <Route path="/vans/:id" element={<VanPage vans={vans} setOrderToDelivered={setOrderToDelivered} setOrderToNotDelivered={setOrderToNotDelivered} orders={orders}/>}/>
