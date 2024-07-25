@@ -108,7 +108,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
         clusters.map(async (cluster, i) => {
             if(i === index) {
                 const waypointsWithHub = [hubPoint, ...cluster, hubPoint];
-                return setOrderedRoute([...orderedRoute, await TT_API.getROUTE(waypointsWithHub)])
+                return setOrderedRoute([...orderedRoute, [index, await TT_API.getROUTE(waypointsWithHub)]])
             }
         })
     }
@@ -134,17 +134,23 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
                                             </Button>
                                         </Link>
                                     </div>
-                                    {orderedRoute[index] && (
-                                        <div className="route-order-list">
-                                            <h6>Delivery Order:</h6>
-                                            <ol>
-                                                {orderedRoute[index].map((order, i) => {
-                                                    if(order.orderName != undefined) {
-                                                        return <li key={i}>{order.orderName}</li>
-                                                    }
-                                                })}
-                                            </ol>
-                                        </div>
+                                    {(orderedRoute) && (
+                                        orderedRoute.map((route, i) => {
+                                            if(route[0] === index) {
+                                                return (
+                                                    <div key = {i} className="route-order-list">
+                                                        <h6>Delivery Order:</h6>
+                                                        <ol>
+                                                            {route[1].map((order, i) => {
+                                                                if(order.orderName != undefined) {
+                                                                    return <li key={i}>{order.orderName}</li>
+                                                                }
+                                                            })}
+                                                        </ol>
+                                                    </div>
+                                                )
+                                            }
+                                        })
                                     )}
                                 </Card.Body>
                             </Card>
