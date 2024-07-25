@@ -18,6 +18,17 @@
     border: 1px solid lightgray;
 }
 
+.order-list-dropdown-item:focus {
+    background-color: var(--tealDarken) !important;
+    color: white !important;
+
+}
+
+.order-list-dropdown-item.active {
+    background-color: var(--teal) !important;
+    color: white !important;
+}
+
 .order-list-nav {
     display: flex;
     justify-content: space-between;

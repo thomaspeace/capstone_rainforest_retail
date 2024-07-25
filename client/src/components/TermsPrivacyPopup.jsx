@@ -53,7 +53,7 @@ const TermsPrivacyPopup = ({ onAccept }) => {
         />
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleAgree} disabled={!agreed}>
+        <Button className="button" onClick={handleAgree} disabled={!agreed}>
           Accept
         </Button>
       </Modal.Footer>
