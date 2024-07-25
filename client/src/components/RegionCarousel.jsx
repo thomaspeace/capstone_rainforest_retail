@@ -19,7 +19,10 @@ const RegionCarousel = () => {
                 <Card className='carousel-card-class'>
                   <Card.Body className='carousel-card-body'>
                     <Card.Title className='carousel-card-title'>Deliveries Completed Today</Card.Title>
-                    <ProgressBar className="custom-progress-bar" animated now={45} label={`${45}%`} />
+                      <ProgressBar className="custom-progress-bar">
+                        <ProgressBar animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={1}/>
+                        <ProgressBar variant='warning' animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={2}/>
+                      </ProgressBar>
                   </Card.Body>
                 </Card>
               </Row>
@@ -27,7 +30,10 @@ const RegionCarousel = () => {
                 <Card className='carousel-card-class'>
                   <Card.Body className='carousel-card-body'>
                     <Card.Title className='carousel-card-title'>Completed Routes</Card.Title>
-                    <ProgressBar className="custom-progress-bar" animated now={80} label={`${80}%`} />
+                      <ProgressBar className="custom-progress-bar">
+                        <ProgressBar animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={1}/>
+                        <ProgressBar variant='warning' animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={2}/>
+                      </ProgressBar>
                   </Card.Body>
                 </Card>
               </Row>
@@ -53,7 +59,10 @@ const RegionCarousel = () => {
                 <Card className='carousel-card-class'>
                   <Card.Body className='carousel-card-body'>
                     <Card.Title className='carousel-card-title'>Deliveries Completed Today</Card.Title>
-                    <ProgressBar className="custom-progress-bar" animated now={45} label={`${45}%`} />
+                      <ProgressBar className="custom-progress-bar">
+                        <ProgressBar animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={1}/>
+                        <ProgressBar variant='warning' animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={2}/>
+                      </ProgressBar>
                   </Card.Body>
                 </Card>
               </Row>
@@ -61,7 +70,10 @@ const RegionCarousel = () => {
                 <Card className='carousel-card-class'>
                   <Card.Body className='carousel-card-body'>
                     <Card.Title className='carousel-card-title'>Completed Routes</Card.Title>
-                    <ProgressBar className="custom-progress-bar" animated now={80} label={`${80}%`} />
+                      <ProgressBar className="custom-progress-bar">
+                        <ProgressBar animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={1}/>
+                        <ProgressBar variant='warning' animated now={(0)*100} label={`${((0)*100).toFixed(0)}%`} key={2}/>
+                      </ProgressBar>
                   </Card.Body>
                 </Card>
               </Row>
