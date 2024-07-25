@@ -34,6 +34,8 @@ export default {
     },
     getROUTE: async (waypoints) => {
 
+        let optimisedRoute;
+
         // clear the map of the current route displayed on it, if there is one
         // firstly removes the layers that are overlayed on the map
         // then removes data associated to the map
@@ -88,6 +90,7 @@ export default {
                     routeLayerIds.push(layerId)
                 })
             })
+            return points.locations
         }
 
         // calls the waypoint optimisation service provided by tomtom
@@ -113,16 +116,16 @@ export default {
             });
 
             const result = await response.json();
-            console.log(result)
             let locations = result.optimizedOrder.map((order) => {
                 return waypoints[order];
             })
-            createRoute({
+            return optimisedRoute = await createRoute({
                 key: VITE_TOMTOM_API,
                 locations: locations
             })
         } catch (e) {
             console.error('ERR: ', e);
         }
+
     },
 }
