@@ -18,42 +18,32 @@ import './styles/Map.css'
 
 */
 
-const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
+const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) => {
     const [map, setMap] = useState(null);
     const [clusters, setClusters] = useState(() => {
-        const localDate = JSON.parse(localStorage.getItem('clusteringDate'))
         let todaysDate = new Date().toLocaleDateString()
-        const savedClusters = localStorage.getItem('clusters');
-        if(localDate === todaysDate && savedClusters){
-            return JSON.parse(savedClusters);
+        const clusterArr = JSON.parse(localStorage.getItem(`clusterData${hubRegion}`))
+        if(clusterArr && clusterArr[3] === todaysDate && clusterArr[2] === hubRegion){
+            return clusterArr[0];
         } else {
-            localStorage.removeItem('clusters')
+            localStorage.removeItem(`clusterData${hubRegion}`)
             return [];
         }
     });
     const [vanIds, setVanIds] = useState(() => {
-        const localDate = JSON.parse(localStorage.getItem('clusteringDate'))
-        const todaysDate = new Date().toLocaleDateString()
-        const savedVanIds = localStorage.getItem('vanIds');
-        if(localDate === todaysDate && savedVanIds){
-            return JSON.parse(savedVanIds);
+        let todaysDate = new Date().toLocaleDateString()
+        const clusterArr = JSON.parse(localStorage.getItem(`clusterData${hubRegion}`))
+        if(clusterArr && clusterArr[3] === todaysDate && clusterArr[2] === hubRegion){
+            return clusterArr[1];
         } else {
-            localStorage.removeItem('vanIds')
+            localStorage.removeItem(`clusterData${hubRegion}`)
             return [];
         }
     });
+    const [orderedRoute, setOrderedRoute] = useState([]);
     const mapElement = useRef();
 
     const hubLocation = [regionalHubLng, regionalHubLat]
-
-    useEffect(() => {
-        localStorage.setItem('clusters', JSON.stringify(clusters));
-        localStorage.setItem('clusteringDate', JSON.stringify(new Date().toLocaleDateString()))
-    }, [clusters]);
-
-    useEffect(() => {
-        localStorage.setItem('vanIds', JSON.stringify(vanIds));
-    }, [vanIds]);
 
     useEffect(() => {
         const tt_map = TT_API.getMAP(mapElement, hubLocation);
@@ -85,8 +75,9 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
             tempVanIdStore.push(clusteredOrder.van.id)
         })
         setVanIds(tempVanIdStore);
+        const dataToSendBack = [clusteredOrderRoutes, tempVanIdStore]
         tempVanIdStore = []
-        return clusteredOrderRoutes;
+        return dataToSendBack;
     }
 
     const getClusteredList = () => {
@@ -94,12 +85,16 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     }
 
     const handleOrderClusters = () => {
-        if(clusters.length === 0) {
+        if(clusters.length === 0 && vanIds.length === 0) {
             getClusteredList()
             .then(clusteredOrderList => {
                 return convertClusteredOrdersToWaypoints(clusteredOrderList)
-            }).then(clusters => {
-                setClusters(clusters);
+            }).then(clustersData => {
+                setClusters(clustersData[0]);
+                return clustersData
+            }).then(clusterData => {
+                const clusterArr = [clusterData[0], clusterData[1], hubRegion, new Date().toLocaleDateString()]
+                localStorage.setItem(`clusterData${hubRegion}`, JSON.stringify(clusterArr))
             })
         }
     }
@@ -110,11 +105,10 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
             lat: hubLocation[1]
         }
 
-        clusters.map((cluster, i) => {
+        clusters.map(async (cluster, i) => {
             if(i === index) {
                 const waypointsWithHub = [hubPoint, ...cluster, hubPoint];
-                TT_API.getROUTE(waypointsWithHub);
-                return;
+                return setOrderedRoute(await TT_API.getROUTE(waypointsWithHub))
             }
         })
     }
@@ -140,6 +134,19 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
                                             </Button>
                                         </Link>
                                     </div>
+                                    {console.log(orderedRoute)}
+                                    {orderedRoute[index] && (
+                                        console.log(orderedRoute)
+                                        // <div className="route-order-list">
+                                        //     <h6>Delivery Order:</h6>
+                                        //     <ol>
+                                        //         {orderedRoute.map((orderName, i) => (
+                                        //             console.log(orderName),
+                                        //             <li key={i}>{orderName}</li>
+                                        //         ))}
+                                        //     </ol>
+                                        // </div>
+                                    )}
                                 </Card.Body>
                             </Card>
                         ))}

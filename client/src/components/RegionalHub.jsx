@@ -47,7 +47,7 @@ const RegionalHub = ({ handleGetCluster }) => {
                 <Col>
                     <Card className="regional-hub__map-card">
                         <Card.Body>
-                            <Map getClusterHelper={() => getClusterHelper(hub.id)} regionalHubLat = {hub.addressModel.latitude} regionalHubLng = {hub.addressModel.longitude}/>
+                            <Map getClusterHelper={() => getClusterHelper(hub.id)} regionalHubLat = {hub.addressModel.latitude} regionalHubLng = {hub.addressModel.longitude} hubRegion = {hub.region}/>
                         </Card.Body>
                     </Card>
                 </Col>
