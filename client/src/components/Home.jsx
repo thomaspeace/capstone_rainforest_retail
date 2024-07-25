@@ -31,7 +31,6 @@ const Home = ({orders, vans}) => {
   
     const countTotalCompletedDeliveries = () => {
         let count = orders.filter((order) => order.dateToDeliver === new Date().toISOString().split('T')[0] && order.deliveryStatus === "DELIVERED").length;
-        console.log("completed orders total = " + count);
         setTotalCompletedDeliveries(count)
     }
 
@@ -51,7 +50,6 @@ const Home = ({orders, vans}) => {
 
     const countOrdersToday = () => {
         let count = orders.filter((order) => order.dateToDeliver === new Date().toISOString().split('T')[0]).length;
-        console.log("orders total = " + count);
         setTotalOrdersToday(count)
     }
 
@@ -62,7 +60,6 @@ const Home = ({orders, vans}) => {
             if (van.clusteredOrder?.listOfOrders?.length > 0){
                 count++;
                 found = true;
-                console.log(count);
             }
         })
         found ? count-- : count
@@ -83,7 +80,6 @@ const Home = ({orders, vans}) => {
                 completedCount++;
             }
         }
-        console.log("completed clusters = " + completedCount);
         setTotalCompletedClusters(completedCount)  
         })
     }
@@ -102,15 +98,9 @@ const Home = ({orders, vans}) => {
                 uncompletedCount++;
             }
         }
-        console.log("uncompleted clusters = " + uncompletedCount);
         setTotalUncompletedClusters(uncompletedCount)  
         })
     }
-
-
-
-
-
 
     // ============================== regional bar functions for carousel ==============================
 

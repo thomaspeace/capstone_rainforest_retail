@@ -14,9 +14,6 @@ const VanPage = ({ vans, setOrderToDelivered, setOrderToNotDelivered, orders }) 
   };
 
   useEffect(() => {
-
-    console.log("Orders or vans changed:", orders, vans);
-
     const fetchedVan = getVanById(id);
     if (fetchedVan) {
       setVan(fetchedVan);

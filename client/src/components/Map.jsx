@@ -4,20 +4,6 @@ import { Link } from "react-router-dom";
 import TT_API from "../utils/TT_API";
 import './styles/Map.css'
 
-/*
-    ----------------------TODAYS TASKS------------------------
-
-    Clusters fetched automatically - COMPLETED
-    Then can generate routes for those clusters using a button - COMPLETED
-    CLEAR ROUTE WHEN CLICKING THE BUTTON AGAIN - DONE
-    Hover on points to display info - DONE
-    Box next to map to show orders to deliver in correct order - DONE
-
-    FIND A WAY TO CLEAR LOCAL STORAGE AND SAVE DATE WITH LOCAL STORAGE AND CHECK IF THE DATES ARE THE SAME - DONE
-    SET ROUTES ON THE MAP PAGE
-
-*/
-
 const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) => {
     const [map, setMap] = useState(null);
     const [clusters, setClusters] = useState(() => {
@@ -136,9 +122,13 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
                                     </div>
                                     {(orderedRoute) && (
                                         orderedRoute.map((route, i) => {
+                                            if(document.getElementById("route-order-list")) {
+                                                let deliverOrderList = document.getElementById("route-order-list")
+                                                deliverOrderList.remove();
+                                            }
                                             if(route[0] === index) {
                                                 return (
-                                                    <div key = {i} className="route-order-list">
+                                                    <div id = 'route-order-list' key = {i} className="route-order-list">
                                                         <h6>Delivery Order:</h6>
                                                         <ol>
                                                             {route[1].map((order, i) => {
