@@ -28,14 +28,13 @@ const Weather = () => {
 
   return (
 <>
-      {/*<p>Humidity: {weatherData.main.humidity}%</p>
-      <p>Wind Speed: {weatherData.wind.speed} m/s</p> */}
-
     <Card className='weather-carousel-card-class'>
       <Card.Title className='weather-carousel-card-title'>Weather</Card.Title>
         <Card.Body className='weather-carousel-card-body'>
           <p className='weather-carousel-card-p'>Temperature: {weatherData.main.temp}°C</p>
           <p className='weather-carousel-card-p'>Weather: {weatherData.weather[0].description}</p>
+          <p className='weather-carousel-card-p'>Humidity: {weatherData.main.humidity}%</p>
+          <p className='weather-carousel-card-p last-p'>Wind Speed: {weatherData.wind.speed} m/s</p>
       </Card.Body>
     </Card>
 </>
