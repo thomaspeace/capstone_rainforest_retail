@@ -13,17 +13,34 @@ import './styles/Map.css'
     Hover on points to display info - DONE
     Box next to map to show orders to deliver in correct order - DONE
 
+    FIND A WAY TO CLEAR LOCAL STORAGE AND SAVE DATE WITH LOCAL STORAGE AND CHECK IF THE DATES ARE THE SAME - DONE
+    SET ROUTES ON THE MAP PAGE
+
 */
 
 const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
     const [map, setMap] = useState(null);
     const [clusters, setClusters] = useState(() => {
+        const localDate = JSON.parse(localStorage.getItem('clusteringDate'))
+        let todaysDate = new Date().toLocaleDateString()
         const savedClusters = localStorage.getItem('clusters');
-        return savedClusters ? JSON.parse(savedClusters) : [];
+        if(localDate === todaysDate && savedClusters){
+            return JSON.parse(savedClusters);
+        } else {
+            localStorage.removeItem('clusters')
+            return [];
+        }
     });
     const [vanIds, setVanIds] = useState(() => {
+        const localDate = JSON.parse(localStorage.getItem('clusteringDate'))
+        const todaysDate = new Date().toLocaleDateString()
         const savedVanIds = localStorage.getItem('vanIds');
-        return savedVanIds ? JSON.parse(savedVanIds) : [];
+        if(localDate === todaysDate && savedVanIds){
+            return JSON.parse(savedVanIds);
+        } else {
+            localStorage.removeItem('vanIds')
+            return [];
+        }
     });
     const mapElement = useRef();
 
@@ -31,6 +48,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng}) => {
 
     useEffect(() => {
         localStorage.setItem('clusters', JSON.stringify(clusters));
+        localStorage.setItem('clusteringDate', JSON.stringify(new Date().toLocaleDateString()))
     }, [clusters]);
 
     useEffect(() => {

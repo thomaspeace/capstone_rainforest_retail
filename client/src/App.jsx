@@ -14,7 +14,6 @@ function App() {
   const [vans, setVans] = useState([]);
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
-  const [clusteredOrders, setClusteredOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchVans = async () => {
@@ -37,7 +36,6 @@ function App() {
     }).then(response => {
       return response.json();
     }).then(clusteredOrderList => {
-      setClusteredOrders(clusteredOrderList)
       fetchData();
       return clusteredOrderList;
     })
