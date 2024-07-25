@@ -56,7 +56,6 @@ export default {
 
         waypoints.forEach(location => {
             if(location.lng != hubLocation[0] && location.lat != hubLocation[1]){
-                console.log(location.postCode)
                 let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
                 let popup = new tt.Popup({offset: 50}).setHTML(location.orderName + "<br>PostCode: " + location.postCode + "<br>Address: " + location.addressLine)
                 marker.setPopup(popup)
