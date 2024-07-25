@@ -1,7 +1,48 @@
 .footer {
     background-color: var(--teal);
+    color: var(--offWhite);
     text-align: center;
     padding: 10px;
-    bottom: 0;
+    margin-top: auto;
     width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    margin-bottom: 10px;
+}
+
+.mini-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.footer a {
+    color: var(--lightCyan);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    color: var(--white);
+}
+
+.footer-social-icons {
+    margin-top: 10px;
+}
+
+.footer-social-icons a {
+    color: var(--offWhite);
+    font-size: 1.2em;
+    margin: 0 5px;
+}
+
+.footer-social-icons a:hover {
+    color: var(--lightCyan);
 }
