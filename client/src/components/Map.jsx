@@ -108,7 +108,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
         clusters.map(async (cluster, i) => {
             if(i === index) {
                 const waypointsWithHub = [hubPoint, ...cluster, hubPoint];
-                return setOrderedRoute(await TT_API.getROUTE(waypointsWithHub))
+                return setOrderedRoute([...orderedRoute, await TT_API.getROUTE(waypointsWithHub)])
             }
         })
     }
@@ -134,18 +134,17 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
                                             </Button>
                                         </Link>
                                     </div>
-                                    {console.log(orderedRoute)}
                                     {orderedRoute[index] && (
-                                        console.log(orderedRoute)
-                                        // <div className="route-order-list">
-                                        //     <h6>Delivery Order:</h6>
-                                        //     <ol>
-                                        //         {orderedRoute.map((orderName, i) => (
-                                        //             console.log(orderName),
-                                        //             <li key={i}>{orderName}</li>
-                                        //         ))}
-                                        //     </ol>
-                                        // </div>
+                                        <div className="route-order-list">
+                                            <h6>Delivery Order:</h6>
+                                            <ol>
+                                                {orderedRoute[index].map((order, i) => {
+                                                    if(order.orderName != undefined) {
+                                                        return <li key={i}>{order.orderName}</li>
+                                                    }
+                                                })}
+                                            </ol>
+                                        </div>
                                     )}
                                 </Card.Body>
                             </Card>
