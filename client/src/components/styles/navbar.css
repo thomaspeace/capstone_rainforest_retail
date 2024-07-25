@@ -1,5 +1,7 @@
 @import '../../vars.css';
 
+
+
 .navbar {
     background-color: var(--teal);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
@@ -37,10 +39,12 @@
     color: var(--offWhite);
 }
 
-.dropdown-item:hover,
-.dropdown-item:focus {
-    background-color: var(--tealDarken);
-    color: var(--lightCyan);
+.region-dropdown:focus {
+    background-color: var(--tealDarken) !important;
+}
+
+.region-dropdown.active {
+    background-color: var(--teal) !important;
 }
 
 .navbar-container {

@@ -33,11 +33,11 @@ const Navigation = () => {
             </LinkContainer>
             <NavDropdown title="Regional Hubs" id="basic-nav-dropdown">
               <LinkContainer to="/regionalhubs/1">
-                <NavDropdown.Item>London</NavDropdown.Item>
+                <NavDropdown.Item className='region-dropdown'>London</NavDropdown.Item>
               </LinkContainer>
               {/* Add Midlands hub */}
               <LinkContainer to="/regionalhubs/2">
-                <NavDropdown.Item>Midlands</NavDropdown.Item>
+                <NavDropdown.Item className='region-dropdown'>Midlands</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
           </Nav>

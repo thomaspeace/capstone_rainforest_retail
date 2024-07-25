@@ -59,6 +59,17 @@
     margin: 0px 5px 0px 5px !important;
 }
 
+.van-list-dropdown-item:focus {
+    background-color: var(--tealDarken) !important;
+    color: white !important;
+
+}
+
+.van-list-dropdown-item.active {
+    background-color: var(--teal) !important;
+    color: white !important;
+}
+
 .van-list-card-button-container {
     margin-top: auto;
     display: flex;

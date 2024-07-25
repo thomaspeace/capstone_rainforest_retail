@@ -27,7 +27,7 @@
 
 .regional-hub__details-card .card-header,
 .regional-hub__stats-card .card-header {
-    background-color: var(--darkCyan);
+    background-color: var(--teal);
     color: var(--white);
 }
 

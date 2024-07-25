@@ -65,9 +65,9 @@ const VanList = ({ vans }) => {
                   Filter by Region
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => handleRegionSelect('All')}>All</Dropdown.Item>
+                  <Dropdown.Item className='van-list-dropdown-item' onClick={() => handleRegionSelect('All')}>All</Dropdown.Item>
                   {regions.map((region, index) => (
-                    <Dropdown.Item key={index} onClick={() => handleRegionSelect(region)}>
+                    <Dropdown.Item className='van-list-dropdown-item' key={index} onClick={() => handleRegionSelect(region)}>
                       {region}
                     </Dropdown.Item>
                   ))}
