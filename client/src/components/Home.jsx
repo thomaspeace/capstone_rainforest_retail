@@ -1,14 +1,25 @@
+import React, { useState, useEffect } from 'react';
 import { Row, Container, Col, Card } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import RegionCarousel from './RegionCarousel';
+import TermsPrivacyPopup from './TermsPrivacyPopup';
 import "./styles/Home.css";
-import React, { useEffect, useState } from 'react';
 import bannerImage from '../assets/rainforest.jpg';
 import "./styles/Banner.css";
 
 
+
 const Home = ({orders, vans}) => {
 
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const termsAccepted = localStorage.getItem('termsAccepted');
+        if (!termsAccepted) {
+            setShowPopup(true);
+        }
+    }, []);
+  
     const[totalCompletedDeliveries, setTotalCompletedDeliveries] = useState(0)
     const[totalCompletedNotDelivered, setTotalNotDelivered] = useState(0)
     const[totalOrdersToday, setTotalOrdersToday] = useState(0)
@@ -16,6 +27,9 @@ const Home = ({orders, vans}) => {
     const[totalUncompletedClusters, setTotalUncompletedClusters] = useState(0)
     const[totalClustersToday, setTotalClustersToday] = useState(1)
     const [loading, setLoading] = useState(true);
+  
+  
+
 
     const countTotalCompletedDeliveries = () => {
         let count = orders.filter((order) => order.dateToDeliver === new Date().toISOString().split('T')[0] && order.deliveryStatus === "DELIVERED").length;
@@ -114,6 +128,7 @@ const Home = ({orders, vans}) => {
 
     return (
         <>
+        {showPopup && <TermsPrivacyPopup onAccept={() => setShowPopup(false)} />}
         <div className="banner-container">
             <div className="text-for-banner">
                 <h1>Rainforest Retail</h1>
