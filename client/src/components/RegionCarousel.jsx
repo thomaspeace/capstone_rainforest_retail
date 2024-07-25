@@ -58,19 +58,6 @@ const RegionCarousel = ( {countOrdersTodayPerRegion, countTotalCompletedDeliveri
   return (
     <>
 
-      {console.log("countOrdersTodayLondon = ", countOrdersTodayLondon)}
-      {console.log("countOrdersTodayMidlands = ", countOrdersTodayMidlands)}
-      {console.log("countTotalCompletedDeliveriesLondon = ", countTotalCompletedDeliveriesLondon)}
-      {console.log("countTotalCompletedDeliveriesMidlands = ", countTotalCompletedDeliveriesMidlands)}
-      {console.log("countNotDeliveredLondon = ", countNotDeliveredLondon)}
-      {console.log("countNotDeliveredMidlands = ", countNotDeliveredMidlands)}
-      {console.log("countClustersTodayLondon = ", countClustersTodayLondon)}
-      {console.log("countClustersTodayMidlands = ", countClustersTodayMidlands)}
-      {console.log("countCompletedClustersLondon = ", countCompletedClustersLondon)}
-      {console.log("countCompletedClustersMidlands = ", countCompletedClustersMidlands)}
-      {console.log("countUncompletedClustersLondon = ", countUncompletedClustersLondon)}
-      {console.log("countUncompletedClustersMidlands = ", countUncompletedClustersMidlands)}
-
       <Carousel className='carousel-class'>
         <Carousel.Item interval={4000} className="carousel-item">
           <div className="carousel-background">

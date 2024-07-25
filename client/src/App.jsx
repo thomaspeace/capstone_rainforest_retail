@@ -58,10 +58,6 @@ function App() {
     fetchData();
   }, []);
 
-  // useEffect (() => {
-  //   fetchData();
-  // }, [orders]);
-
   // New function to set the selected order
   const selectOrder = (id) => {
     const order = orders.find(o => o.id === parseInt(id));
@@ -82,7 +78,6 @@ function App() {
       headers: {"Content-Type": "application/json"}
     })
     const data = await response.json()
-    console.log(data)
     fetchData();
   }
 
@@ -92,7 +87,6 @@ function App() {
       headers: {"Content-Type": "application/json"}
     })
     const data = await response.json()
-    console.log(data)
     fetchData();
   }
 
