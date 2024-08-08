@@ -32,24 +32,30 @@ To alleviate the pressure on the delivery network, the single warehouse will be 
 ## Installation Instructions
 
 **1. Install Dependencies**
+
 Install Java 17, JavaScript and PostgreSQL
 
 **2. Clone the repostiory**
+
 In your terminal, navigate to your desired directory and enter
 `git clone https://github.com/thomaspeace/capstone_rainforest_retail.git`
 
 **3. Create Database**
+
 Create your local database by running
 `createdb postgresql`
 in your terminal.
 
 **4. Run the back-end server**
+
 Open your IDE of choice, and run RainforestRetailServerApplication.java
 
 **5. Create API keys**
+
 Get the API keys for the TomTom API and OpenWeatherAPI
 
 **5. Create .env file**
+
 In your terminal, navigate to the client directory and enter
 `touch .env`
 in your terminal. Open this file and enter the following
@@ -61,10 +67,12 @@ VITE_OPENWEATHER_API = <your key here>
 Save the file.
 
 **6. Install front-end packages**
+
 Open your terminal in the client directory and enter
 `npm install`
 
 **7. Run your front-end**
+
 Open your terminal in the client directory and enter
 `npm run dev`
 
