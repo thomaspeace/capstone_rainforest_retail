@@ -77,7 +77,7 @@ Open your terminal in the client directory and enter
 `npm run dev`
 
 
-## Authors
+## Contributors
 
 |    Name     |         Github              |
 |---------|---------------------------------|
