@@ -7,8 +7,10 @@ Rainforest Retail's delivery system is currently experiencing a significant bott
 
 To alleviate the pressure on the delivery network, the single warehouse will be replaced with regional hubs. This decentralised model will bring distribution points closer to customers, reducing delivery times and enabling a more responsive and flexible logistics system. To optimise this setup, a clustering algorithm group orders per regional hub into a cluster or orders a van will deliver. Additionally, the clustered order data will be fed into a waypoint optimiser, which will determine the most efficient routes for each van. This approach will improve the utilisation of the delivery fleet, reduce operational costs, and improve overall customer satisfaction by providing faster and more reliable deliveries.
 
-<img src="phone-image.png" width="250" alt="homepage on phone screen">
-<img src="phone-image-2.png" width="250" alt="map page on phone screen">
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+  <img src="phone-image.png" width="250" alt="homepage on phone screen">
+  <img src="phone-image-2.png" width="250" alt="map page on phone screen">
+</div>
 
 
 ## Tech Stack
