@@ -14,22 +14,27 @@ let waypointArr = [];
 export default {
     getMAP: (mapElement, hub) => {
 
+        // first, save the hub location for future reference
         hubLocation = hub;
 
+        // create the actual map with specific settings
         routeMap = tt.map({
-            key: VITE_TOMTOM_API,
-            container: mapElement.current,
-            center: hub,
-            bearing: 0,
-            pitch: 60,
-            zoom: 10
+            key: VITE_TOMTOM_API,           // API key
+            container: mapElement.current,  // where to put the map within the page
+            center: hub,                    // start the map centered on the hub
+            bearing: 0,                     // 0 = north
+            pitch: 60,                      // tilt
+            zoom: 10                        // zoom level
         });
 
+        // create marker denoting the hub
         let element = document.createElement("div")
         element.id = "hub-marker"
 
+        // put the marker on the map
         let hubMarker = new tt.Marker({element: element}).setLngLat(hub).addTo(routeMap)
 
+        // return the configured map
         return routeMap;
     },
     getROUTE: async (waypoints) => {
