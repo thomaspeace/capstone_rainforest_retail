@@ -37,18 +37,24 @@ export default {
         // return the configured map
         return routeMap;
     },
+
+
+
     getROUTE: async (waypoints) => {
 
         let optimisedRoute;
 
+        // ----- CLEAR THE MAP -----
         // clear the map of the current route displayed on it, if there is one
         // firstly removes the layers that are overlayed on the map
         // then removes data associated to the map
         if(routeLayerIds.length > 0) {
             routeLayerIds.forEach(id => {
+                // remove existing route lines from the map
                 if(routeMap.getLayer(id)) {
                     routeMap.removeLayer(id)
                 }
+                // remove the data corresponding to the route lines
                 if(routeMap.getSource(id)) {
                     routeMap.removeSource(id)
                 }
@@ -56,23 +62,33 @@ export default {
             routeLayerIds = []
         }
 
+        // clean up any existing markers
         waypointArr.forEach(marker => {marker.remove()})
         waypointArr = []
 
+
+        // ----- ADDING NEW MARKERS -----
         waypoints.forEach(location => {
+            // check if it's not the hub location
             if(location.lng != hubLocation[0] && location.lat != hubLocation[1]){
+                // create marker for each stop
                 let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
+                // create a pop up for the stop
                 let popup = new tt.Popup({offset: 50}).setHTML(location.orderName + "<br>PostCode: " + location.postCode + "<br>Address: " + location.addressLine)
                 marker.setPopup(popup)
                 waypointArr.push(marker)
             }
         })
 
+        // ----- DRAWING THE ROUTE -----
+        // helper function to draw the route on the map
         const createRoute = (points) => {
             ttServices.services.calculateRoute(points).then((response) => {
                 const features = response.toGeoJson().features
+                // draw each segment of the route
                 features.forEach((feature, index) => {
                     const layerId = 'route' + index
+                    // add a new layer to draw the route line
                     routeMap.addLayer({
                         'id': layerId,
                         'type': "line",
@@ -100,6 +116,7 @@ export default {
         // calls the waypoint optimisation service provided by tomtom
         // and returns an array of routes in an optimised order
         const url = `${VITE_TOMTOM_URL}/routing/waypointoptimization/1/best?key=` + VITE_TOMTOM_API;
+        // prepare the data for the TOMTOM api
         const payload = {
             waypoints: waypoints.map((pointIndex) => {
                 return {
@@ -111,6 +128,7 @@ export default {
             })
         }
         try {
+            // get the optimsed route from tomtom
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -120,9 +138,11 @@ export default {
             });
 
             const result = await response.json();
+            // rearrange the waypoints into the optimised order
             let locations = result.optimizedOrder.map((order) => {
                 return waypoints[order];
             })
+            // draw the optimised route and return the ordered locations
             return optimisedRoute = await createRoute({
                 key: VITE_TOMTOM_API,
                 locations: locations
