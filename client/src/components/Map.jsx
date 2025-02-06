@@ -34,19 +34,25 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
             return [];
         }
     });
-
     // the vanIds are then:
     // updated when new clusters are created (in convertClusteredOrdersToWaypoints)
     // used to link each cluster to its van (vans/${vanIds[index]})
 
+
+    // holds the optimized delivery routes once they're calculated
     const [orderedRoute, setOrderedRoute] = useState([]);
+    //reference to the DOM element where the map will display
     const mapElement = useRef();
 
+    // Creates array of the hub's coordinates from the props passed to the component
     const hubLocation = [regionalHubLng, regionalHubLat]
 
+    // runs when component mounts
     useEffect(() => {
+        // creates map using our tt_api utility and stores the map instance
         const tt_map = TT_API.getMAP(mapElement, hubLocation);
         setMap(tt_map);
+        // cleanup function that runs when component unmounts
         return () => {
             if(tt_map) {
                 tt_map.remove();
