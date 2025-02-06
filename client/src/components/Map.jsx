@@ -5,27 +5,40 @@ import TT_API from "../utils/TT_API";
 import './styles/Map.css'
 
 const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) => {
-    const [map, setMap] = useState(null);
+    const [map, setMap] = useState(null); // stores tomtomapi map instance
     const [clusters, setClusters] = useState(() => {
+        // checks local storage for existing cluster data
         let todaysDate = new Date().toLocaleDateString()
         const clusterArr = JSON.parse(localStorage.getItem(`clusterData${hubRegion}`))
+        // only use stored data if it's from today and for the right hub
         if(clusterArr && clusterArr[3] === todaysDate && clusterArr[2] === hubRegion){
             return clusterArr[0];
         } else {
             localStorage.removeItem(`clusterData${hubRegion}`)
             return [];
         }
+        // clusterArr[0] = array's of delivery points grouped by van
+        // clusterArr[1] = van ID's for each cluster
+        // clusterArr[2] = the hub region
+        // clusterArr[3] = the date
     });
     const [vanIds, setVanIds] = useState(() => {
         let todaysDate = new Date().toLocaleDateString()
         const clusterArr = JSON.parse(localStorage.getItem(`clusterData${hubRegion}`))
+        // If it finds data AND it's from today AND it's for the right hub
         if(clusterArr && clusterArr[3] === todaysDate && clusterArr[2] === hubRegion){
             return clusterArr[1];
         } else {
+            // otherwise the localStorage is cleared and returns an empty array
             localStorage.removeItem(`clusterData${hubRegion}`)
             return [];
         }
     });
+
+    // the vanIds are then:
+    // updated when new clusters are created (in convertClusteredOrdersToWaypoints)
+    // used to link each cluster to its van (vans/${vanIds[index]})
+
     const [orderedRoute, setOrderedRoute] = useState([]);
     const mapElement = useRef();
 
