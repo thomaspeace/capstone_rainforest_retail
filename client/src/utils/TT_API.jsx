@@ -23,7 +23,7 @@ export default {
             container: mapElement.current,  // where to put the map within the page
             center: hub,                    // start the map centered on the hub
             bearing: 0,                     // 0 = north
-            pitch: 60,                      // tilt
+            pitch: 0,                      // tilt
             zoom: 10                        // zoom level
         });
 
