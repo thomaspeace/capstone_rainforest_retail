@@ -130,7 +130,7 @@ const RegionCarousel = ( {countOrdersTodayPerRegion, countTotalCompletedDeliveri
                     </Row>
                   </Col>
                   <Col xs={12} lg={6}>
-                    <Weather city={'Birmingham'}/>
+                    <Weather city={'Birmingham,GB'}/>
                   </Col>
                 </Row>
               </Container>
