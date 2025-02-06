@@ -60,12 +60,17 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
         }
     }, []);
 
+    // Converts raw cluster data into waypoints that TomTom's API can use
     const convertClusteredOrdersToWaypoints = (clusteredOrders) => {
-        let clusteredOrderRoutes = [];
-        let clusteredOrderWaypoints = [];
-        let tempVanIdStore = [];
-        clusteredOrders.map(clusteredOrder => {
+        let clusteredOrderRoutes = []; // Will hold all routes for all vans
+        let clusteredOrderWaypoints = []; // Temporary array for current van's waypoints
+        let tempVanIdStore = []; // Store van IDs in order of clusters
+
+        // Loop through each cluster (van with its orders)
+        clusteredOrders.map(clusteredOrder => { 
+            // Loop through each order in this van's cluster
             clusteredOrder.listOfOrders.map(order => {
+                // Create waypoint object for this delivery
                 const obj = {
                     lng: order.deliveryAddress.longitude,
                     lat: order.deliveryAddress.latitude,
@@ -75,44 +80,55 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
                 }
                 clusteredOrderWaypoints.push(obj);
             })
+            // Add this van's waypoints to main routes array
             clusteredOrderRoutes.push(clusteredOrderWaypoints)
-            clusteredOrderWaypoints = []
+            clusteredOrderWaypoints = [] // Clear for next van
             tempVanIdStore.push(clusteredOrder.van.id)
         })
-        setVanIds(tempVanIdStore);
+        setVanIds(tempVanIdStore); // Update van IDs in state
         const dataToSendBack = [clusteredOrderRoutes, tempVanIdStore]
-        tempVanIdStore = []
+        tempVanIdStore = [] // Cleanup
         return dataToSendBack;
     }
 
+    // Simple wrapper function to get clusters from helper function passed as prop
     const getClusteredList = () => {
         return getClusterHelper();
     }
 
+    // Handles the "GET CLUSTERS" button click
     const handleOrderClusters = () => {
+        // Only get new clusters if we don't already have them
         if(clusters.length === 0 && vanIds.length === 0) {
             getClusteredList()
             .then(clusteredOrderList => {
+                // Convert raw cluster data to waypoints
                 return convertClusteredOrdersToWaypoints(clusteredOrderList)
             }).then(clustersData => {
+                // Save clusters to state
                 setClusters(clustersData[0]);
                 return clustersData
             }).then(clusterData => {
+                // Save to localStorage for persistence
                 const clusterArr = [clusterData[0], clusterData[1], hubRegion, new Date().toLocaleDateString()]
                 localStorage.setItem(`clusterData${hubRegion}`, JSON.stringify(clusterArr))
             })
         }
     }
-
+    // Handles getting optimised route for a specific cluster when "Get Route" is clicked
     const handleGetRoute = (index) => {
+        // Create hub location object for start/end point
         const hubPoint = {
             lng: hubLocation[0],
             lat: hubLocation[1]
         }
 
+        // Find the selected cluster and create its route
         clusters.map(async (cluster, i) => {
             if(i === index) {
+                // Add hub as first and last point of route
                 const waypointsWithHub = [hubPoint, ...cluster, hubPoint];
+                // Get optimised route and save to state
                 return setOrderedRoute([...orderedRoute, [index, await TT_API.getROUTE(waypointsWithHub)]])
             }
         })
