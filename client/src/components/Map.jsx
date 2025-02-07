@@ -143,7 +143,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
             <Container>
                 <Row>
                     <Col className="cluster-list-col">
-                        <Button className="button button-cluster" onClick={handleOrderClusters}>GET CLUSTERS</Button>
+                        <Button className="button button-cluster" onClick={handleOrderClusters}>Get Clusters</Button>
                         <div ref={mapElement} id="map" className="map"></div>
                     </Col>
                     <Col className="cluster-list-col">
