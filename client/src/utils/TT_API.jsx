@@ -23,7 +23,7 @@ export default {
             container: mapElement.current,  // where to put the map within the page
             center: hub,                    // start the map centered on the hub
             bearing: 0,                     // 0 = north
-            pitch: 0,                      // tilt
+            pitch: 0,                       // tilt
             zoom: 10                        // zoom level
         });
 
@@ -72,10 +72,10 @@ export default {
             // check if it's not the hub location
             if(location.lng != hubLocation[0] && location.lat != hubLocation[1]){
                 // create marker for each stop
-                let marker = new tt.Marker().setLngLat(location).addTo(routeMap)
+                let marker = new tt.Marker().setLngLat(location).addTo(routeMap) // Marker is a tomtom function
                 // create a pop up for the stop
-                let popup = new tt.Popup({offset: 50}).setHTML(location.orderName + "<br>PostCode: " + location.postCode + "<br>Address: " + location.addressLine)
-                marker.setPopup(popup)
+                let popup = new tt.Popup({offset: 50}).setHTML(location.orderName + "<br>PostCode: " + location.postCode + "<br>Address: " + location.addressLine) // Popup is a tomtom function
+                marker.setPopup(popup) // setPopup is a function provided by tomtom
                 waypointArr.push(marker)
             }
         })

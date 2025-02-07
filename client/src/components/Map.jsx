@@ -63,7 +63,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
     // Converts raw cluster data into waypoints that TomTom's API can use
     const convertClusteredOrdersToWaypoints = (clusteredOrders) => {
         let clusteredOrderRoutes = []; // Will hold all routes for all vans
-        let clusteredOrderWaypoints = []; // Temporary array for current van's waypoints
+        let clusteredOrderWaypoints = []; // Temporary array for current van's waypoints (cluster of orders)
         let tempVanIdStore = []; // Store van IDs in order of clusters
 
         // Loop through each cluster (van with its orders)
@@ -82,7 +82,7 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
             })
             // Add this van's waypoints to main routes array
             clusteredOrderRoutes.push(clusteredOrderWaypoints)
-            clusteredOrderWaypoints = [] // Clear for next van
+            clusteredOrderWaypoints = [] // Clear for next van 
             tempVanIdStore.push(clusteredOrder.van.id)
         })
         setVanIds(tempVanIdStore); // Update van IDs in state
@@ -106,12 +106,16 @@ const Map = ({getClusterHelper , regionalHubLat , regionalHubLng , hubRegion}) =
                 return convertClusteredOrdersToWaypoints(clusteredOrderList)
             }).then(clustersData => {
                 // Save clusters to state
-                setClusters(clustersData[0]);
+                setClusters(clustersData[0]); // the clustered data is in index 0, the vans is in index 1
                 return clustersData
             }).then(clusterData => {
                 // Save to localStorage for persistence
                 const clusterArr = [clusterData[0], clusterData[1], hubRegion, new Date().toLocaleDateString()]
                 localStorage.setItem(`clusterData${hubRegion}`, JSON.stringify(clusterArr))
+                // clusterArr[0] = array's of delivery points grouped by van
+                // clusterArr[1] = van ID's for each cluster
+                // clusterArr[2] = the hub region
+                // clusterArr[3] = the date
             })
         }
     }
