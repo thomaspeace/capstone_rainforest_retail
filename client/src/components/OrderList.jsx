@@ -99,9 +99,13 @@ const OrderList = ({ orders }) => {
             </Navbar.Text>
             <Navbar.Text className="order-list-nav-item">
               <Dropdown>
-                <Dropdown.Toggle className="order-list-dropdown" id='goes-down-2'>
-                  Filter by Region
-                </Dropdown.Toggle>
+              <Dropdown.Toggle 
+                className="order-list-dropdown flex flex-col text-center" 
+                id='goes-down-2'
+              >
+                <span>Filter </span>
+                <span>by Region</span>
+              </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item className='order-list-dropdown-item' onClick={() => handleRegionSelect('All')}>All</Dropdown.Item>
                   {regions.map((region, index) => (
